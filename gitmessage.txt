@@ -1,0 +1,8 @@
+#Git message template
+#TODO: add automatic build counter
+Commit status : buildable/non-buildable
+Test status : all test passed/failed tests : ~specify tests~
+Changes:
+#+added
+#-removed
+#*modified
