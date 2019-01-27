@@ -34,4 +34,12 @@ public class OnMapImageEntity {
     @Setter
     private String imageUrl;
 
+    public OnMapImageEntity() {
+    }
+
+    public OnMapImageEntity(Long xCoordinate, Long yCoordinate, String imageUrl) {
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+        this.imageUrl = imageUrl;
+    }
 }
