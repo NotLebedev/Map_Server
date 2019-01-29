@@ -9,8 +9,8 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        DatabaseOnMapImageTest.class,
-        MapserverApplicationTests.class
+        MapserverApplicationTests.class,
+        DatabaseOnMapImageTest.class
 })
 public class AppTestSuite {
 }
