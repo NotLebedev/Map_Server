@@ -1,4 +1,4 @@
-package ilich.ml.mapserver.Model.Entities;
+package ilich.ml.mapserver.model.entities;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,8 @@
 package ilich.ml.mapserver.DatabaseTests;
 
 import ilich.ml.mapserver.AppConfigTest;
-import ilich.ml.mapserver.Model.Entities.OnMapImageEntity;
-import ilich.ml.mapserver.Model.Repositories.OnMapImageRepository;
+import ilich.ml.mapserver.model.entities.OnMapImageEntity;
+import ilich.ml.mapserver.model.repositories.OnMapImageRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

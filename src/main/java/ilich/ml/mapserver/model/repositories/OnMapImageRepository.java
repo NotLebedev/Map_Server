@@ -1,6 +1,6 @@
-package ilich.ml.mapserver.Model.Repositories;
+package ilich.ml.mapserver.model.repositories;
 
-import ilich.ml.mapserver.Model.Entities.OnMapImageEntity;
+import ilich.ml.mapserver.model.entities.OnMapImageEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
