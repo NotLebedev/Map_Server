@@ -1,0 +1,37 @@
+//
+
+{
+//Request parameters
+"centerX" : *number*,
+"centerY" : *number*,
+
+"width" : *number*,
+"height" : *number*,
+//Request parameters
+
+//Response array of entities (images, vector lines, e.t.c.) found in rect
+//specified by request
+"entities" : [
+
+    { //
+    "type" : "image",
+
+    "centerX" : *number*,
+    "centerY" : *number*,
+
+    "width" : *number*,
+    "height" : *number*,
+
+    "url" : *string*
+    },
+
+    {
+
+    "type" : "line" //TBD
+    },
+
+    *any number of types specified above*
+
+]
+
+}
