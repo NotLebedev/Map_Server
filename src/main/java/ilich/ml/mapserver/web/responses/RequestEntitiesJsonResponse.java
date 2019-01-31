@@ -8,17 +8,17 @@ import lombok.Getter;
 public class RequestEntitiesJsonResponse {
 
     @Getter
-    private Long centerX;
+    private final Long centerX;
     @Getter
-    private Long centerY;
+    private final Long centerY;
 
     @Getter
-    private Long width;
+    private final Long width;
     @Getter
-    private Long height;
+    private final Long height;
 
     @Getter
-    private Entity[] entities;
+    private final Entity[] entities;
 
     public interface Entity {}
 
@@ -56,4 +56,5 @@ public class RequestEntitiesJsonResponse {
         this.height = height;
         this.entities = entities;
     }
+
 }
