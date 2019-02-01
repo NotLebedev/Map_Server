@@ -5,39 +5,30 @@ import lombok.Getter;
 /**
  * @author NotLebedev
  */
+@Getter
 public class RequestEntitiesJsonResponse {
 
-    @Getter
     private final Long centerX;
-    @Getter
     private final Long centerY;
 
-    @Getter
     private final Long width;
-    @Getter
     private final Long height;
 
-    @Getter
     private final Entity[] entities;
 
     public interface Entity {}
 
+    @Getter
     public static class Image implements Entity {
 
-        @Getter
         private final String type = "image";
 
-        @Getter
         private Long centerX;
-        @Getter
         private Long centerY;
 
-        @Getter
         private Long width;
-        @Getter
         private Long height;
 
-        @Getter
         private String url;
 
         public Image(Long centerX, Long centerY, Long width, Long height, String url) {
