@@ -2,23 +2,25 @@ package ilich.ml.mapserver.model;
 
 import ilich.ml.mapserver.JsonResponseBuilder;
 import ilich.ml.mapserver.model.repositories.OnMapImageRepository;
-import org.springframework.beans.BeansException;
+import ilich.ml.mapserver.model.repositories.RepositoryManagerBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  * @author NotLebedev
  */
-public class DatabaseProxy implements ApplicationContextAware {
+@Component
+public class DatabaseProxy {
 
-    private OnMapImageRepository imageRepository;
+    private static OnMapImageRepository imageRepository;
     
     private DatabaseProxy() {
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        imageRepository = (OnMapImageRepository) applicationContext.getBean("RepositoryManager");
+    @Autowired
+    public void context(ApplicationContext applicationContext) {
+        imageRepository = ((RepositoryManagerBean) applicationContext.getBean("RepositoryManager")).getOnMapImageRepository();
     }
 
     private static class DatabaseProxyLazyHolder {
@@ -35,7 +37,9 @@ public class DatabaseProxy implements ApplicationContextAware {
         Long x2 = centerX + width/2;
         Long y1 = centerY - height/2;
         Long y2 = centerY + height/2;
-        
+
+        builder.addEntities(imageRepository.findOverlappingRectangle(x1, y1, x2, y2));
+
         return builder;
 
     }
