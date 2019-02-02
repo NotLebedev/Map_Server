@@ -41,6 +41,7 @@ public class OnMapImageEntity {
     @Getter @Setter
     private String imageUrl;
 
+    @SuppressWarnings("unused")
     public OnMapImageEntity() {
     }
 
