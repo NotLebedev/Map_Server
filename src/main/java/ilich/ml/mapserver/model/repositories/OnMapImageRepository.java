@@ -3,12 +3,14 @@ package ilich.ml.mapserver.model.repositories;
 import ilich.ml.mapserver.model.entities.OnMapImageEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author NotLebedev
  */
+@Repository("OnMapImageRepository")
 public interface OnMapImageRepository extends CrudRepository<OnMapImageEntity, Long> {
 
     List<OnMapImageEntity> findAllByXCoordinateBetweenAndYCoordinateBetween(final Long XCoordinate, final Long XCoordinate2, final Long YCoordinate, final Long YCoordinate2);

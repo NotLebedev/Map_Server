@@ -5,6 +5,7 @@ import ilich.ml.mapserver.model.entities.OnMapImageEntity;
 import ilich.ml.mapserver.model.repositories.OnMapImageRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.awt.*;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public class DatabaseOnMapImageTest extends AppConfigTest {
 
+    @Qualifier("OnMapImageRepository")
     @Autowired
     OnMapImageRepository repository;
 
