@@ -23,13 +23,13 @@ public class RequestEntitiesJsonResponse {
 
         private final String type = "image";
 
-        private Long centerX;
-        private Long centerY;
+        private final Long centerX;
+        private final Long centerY;
 
-        private Long width;
-        private Long height;
+        private final Long width;
+        private final Long height;
 
-        private String url;
+        private final String url;
 
         public Image(Long centerX, Long centerY, Long width, Long height, String url) {
             this.centerX = centerX;

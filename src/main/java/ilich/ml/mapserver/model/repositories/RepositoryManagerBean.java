@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service("RepositoryManager")
 public class RepositoryManagerBean {
 
-    private OnMapImageRepository onMapImageRepository;
+    private final OnMapImageRepository onMapImageRepository;
 
     @Autowired
     public RepositoryManagerBean(@Qualifier("OnMapImageRepository") OnMapImageRepository imageRepository) {
