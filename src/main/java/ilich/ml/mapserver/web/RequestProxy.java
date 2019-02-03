@@ -26,6 +26,10 @@ public class RequestProxy {
 
         JsonResponseBuilder builder = new JsonResponseBuilder();
 
+        builder.centerX(centerX).centerY(centerY).width(width).height(height);
+
+        builder = db.getImages(builder, centerX, centerY, width, height);
+
         return builder.build();
 
     }
