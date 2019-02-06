@@ -40,7 +40,6 @@ public class ApplicationLoader implements ApplicationListener<ApplicationEnviron
 
         }
 
-
         BufferedReader in;
 
         try {
@@ -57,6 +56,9 @@ public class ApplicationLoader implements ApplicationListener<ApplicationEnviron
             while ((st = in.readLine()) != null) {
 
                 String[] kv = st.split("=", 2);
+
+                if(kv.length < 2)
+                    continue;
 
                 log.info("Found key : " + kv[0] + "|| with value : " + kv[1]);
 
