@@ -1,5 +1,9 @@
-//
+//failure response
+{
+"responseType" : "failure"
+}
 
+//requestEntities response
 {
 //Type
 "responseType" : "RequestEntitiesSuccess",

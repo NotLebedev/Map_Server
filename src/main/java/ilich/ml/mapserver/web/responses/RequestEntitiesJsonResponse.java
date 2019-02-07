@@ -6,7 +6,7 @@ import lombok.Getter;
  * @author NotLebedev
  */
 @Getter
-public class RequestEntitiesJsonResponse {
+public class RequestEntitiesJsonResponse implements JsonResponse {
 
     private final String responseType = "RequestEntitiesSuccess";
 
