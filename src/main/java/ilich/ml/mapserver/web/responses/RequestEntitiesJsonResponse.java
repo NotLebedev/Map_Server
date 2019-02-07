@@ -8,6 +8,8 @@ import lombok.Getter;
 @Getter
 public class RequestEntitiesJsonResponse {
 
+    private final String responseType = "RequestEntitiesSuccess";
+
     private final Long centerX;
     private final Long centerY;
 

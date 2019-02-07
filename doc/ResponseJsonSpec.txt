@@ -1,6 +1,9 @@
 //
 
 {
+//Type
+"responseType" : "RequestEntitiesSuccess",
+
 //Request parameters
 "centerX" : *number*,
 "centerY" : *number*,
