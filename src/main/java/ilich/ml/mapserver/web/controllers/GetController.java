@@ -15,7 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 @RestController
 public class GetController {
 
-    private RequestProxy requestProxy = RequestProxy.getInstance();
+    private final RequestProxy requestProxy = RequestProxy.getInstance();
 
     /**
      * Get request mapping

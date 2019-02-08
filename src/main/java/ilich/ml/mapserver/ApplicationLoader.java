@@ -14,7 +14,7 @@ import java.util.Properties;
  */
 public class ApplicationLoader implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
-    private Logger log = LoggerFactory.getLogger(ApplicationLoader.class);
+    private final Logger log = LoggerFactory.getLogger(ApplicationLoader.class);
 
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {

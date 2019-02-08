@@ -9,7 +9,7 @@ import ilich.ml.mapserver.web.responses.RequestEntitiesJsonResponse;
  */
 public class RequestProxy {
 
-    private DatabaseProxy db = DatabaseProxy.getInstance();
+    private final DatabaseProxy db = DatabaseProxy.getInstance();
 
     private RequestProxy() {
     }
