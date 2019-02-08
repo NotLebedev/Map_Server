@@ -27,8 +27,9 @@ public interface OnMapImageRepository extends CrudRepository<OnMapImageEntity, L
      * @param y2 lower right corner y coordinate
      * @return {@link List} of {@link OnMapImageEntity} that intersect specified rectangle
      */
-    @Query("FROM OnMapImageEntity WHERE ((x1 BETWEEN ?1 AND ?3) OR (x2 BETWEEN ?1 AND ?3)) AND ((y1 BETWEEN ?2 AND ?4) OR (y2 BETWEEN ?2 AND ?4))")
-    //@Query("FROM  OnMapImageEntity WHERE NOT (x2 < ?1 OR y2 < ?2 OR x1 > ?3 OR y1 > ?4)") This query seems to work ~5% slower, however additional investigation should be preformed
+    //@Query("FROM OnMapImageEntity WHERE ((x1 BETWEEN ?1 AND ?3) OR (x2 BETWEEN ?1 AND ?3)) AND ((y1 BETWEEN ?2 AND ?4) OR (y2 BETWEEN ?2 AND ?4))")
+    @Query("FROM  OnMapImageEntity WHERE NOT (x2 < ?1 OR y2 < ?2 OR x1 > ?3 OR y1 > ?4)")
+    //Okay, maybe this query is slower (only ~5%), but it works perfectly well with view entirely inside of image
     List<OnMapImageEntity> findOverlappingRectangle(final Long x1, final Long y1, final Long x2, final Long y2);
 
 }
