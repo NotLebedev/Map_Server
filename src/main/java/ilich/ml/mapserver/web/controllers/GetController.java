@@ -4,8 +4,10 @@ import ilich.ml.mapserver.web.RequestProxy;
 import ilich.ml.mapserver.web.responses.FailureJsonResponse;
 import ilich.ml.mapserver.web.responses.JsonResponse;
 import ilich.ml.mapserver.web.responses.RequestEntitiesJsonResponse;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
 /**
  * @author NotLebedev
@@ -33,6 +35,11 @@ public class GetController {
 
         return requestProxy.requestEntitiesInView(x, y, width, height);
 
+    }
+
+    @ExceptionHandler({ Exception.class })
+    public JsonResponse handleAll(Exception ex, WebRequest request) {
+        return new FailureJsonResponse();
     }
 
 }
