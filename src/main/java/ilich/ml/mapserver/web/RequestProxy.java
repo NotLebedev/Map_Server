@@ -34,7 +34,7 @@ public class RequestProxy {
 
         JsonResponseBuilder builder = new JsonResponseBuilder();
 
-        builder.centerX(x1).centerY(y1).width(width).height(height);
+        builder.x1(x1).y1(y1).width(width).height(height);
 
         builder = db.getImages(builder, x1, y1, width, height);
 

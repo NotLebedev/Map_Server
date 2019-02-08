@@ -9,8 +9,8 @@
 "responseType" : "RequestEntitiesSuccess",
 
 //Request parameters
-"centerX" : *number*,
-"centerY" : *number*,
+"x1" : *number*,
+"y1" : *number*,
 
 "width" : *number*,
 "height" : *number*,
@@ -23,8 +23,8 @@
     { //Possible entity types
     "type" : "image",
 
-    "centerX" : *number*,
-    "centerY" : *number*,
+    "x1" : *number*,
+    "y1" : *number*,
 
     "width" : *number*,
     "height" : *number*,

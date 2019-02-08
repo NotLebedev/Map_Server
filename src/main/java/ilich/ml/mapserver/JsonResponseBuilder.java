@@ -14,22 +14,22 @@ import java.util.List;
  */
 public class JsonResponseBuilder {
 
-    private Long centerX = null;
-    private Long centerY = null;
+    private Long x1 = null;
+    private Long y1 = null;
     private Long width = null;
     private Long height = null;
     private List<RequestEntitiesJsonResponse.Entity> entities = null;
 
-    public JsonResponseBuilder centerX(Long centerX) {
+    public JsonResponseBuilder x1(Long x1) {
 
-        this.centerX = centerX;
+        this.x1 = x1;
         return this;
 
     }
 
-    public JsonResponseBuilder centerY(Long centerY) {
+    public JsonResponseBuilder y1(Long y1) {
 
-        this.centerY = centerY;
+        this.y1 = y1;
         return this;
 
     }
@@ -55,8 +55,8 @@ public class JsonResponseBuilder {
         }
 
         images.forEach(image -> {
-            Long centerX = image.getXCoordinate();
-            Long centerY = image.getYCoordinate();
+            Long x1 = image.getX1();
+            Long y1 = image.getY1();
 
             Long width = Math.abs(image.getX1() - image.getX2());
             Long height = Math.abs(image.getY1() - image.getY2());
@@ -64,7 +64,7 @@ public class JsonResponseBuilder {
             String url = image.getImageUrl();
 
             entities.add(new RequestEntitiesJsonResponse.Image(
-                    centerX, centerY, width, height, url));
+                    x1, y1, width, height, url));
         });
 
         return this;
@@ -73,13 +73,13 @@ public class JsonResponseBuilder {
 
     public RequestEntitiesJsonResponse build() {
 
-        centerX = setNull(centerX, 0L);
-        centerY = setNull(centerY, 0L);
+        x1 = setNull(x1, 0L);
+        y1 = setNull(y1, 0L);
         height = setNull(height, 0L);
         width = setNull(width, 0L);
         entities = setNull(entities, new ArrayList<>(0));
 
-        return new RequestEntitiesJsonResponse(centerX, centerY, width, height,
+        return new RequestEntitiesJsonResponse(x1, y1, width, height,
                 entities.toArray(new RequestEntitiesJsonResponse.Entity[0]));
 
     }

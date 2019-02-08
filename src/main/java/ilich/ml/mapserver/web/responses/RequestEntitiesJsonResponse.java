@@ -10,8 +10,8 @@ public class RequestEntitiesJsonResponse implements JsonResponse {
 
     private final String responseType = "RequestEntitiesSuccess";
 
-    private final Long centerX;
-    private final Long centerY;
+    private final Long x1;
+    private final Long y1;
 
     private final Long width;
     private final Long height;
@@ -25,26 +25,26 @@ public class RequestEntitiesJsonResponse implements JsonResponse {
 
         private final String type = "image";
 
-        private final Long centerX;
-        private final Long centerY;
+        private final Long x1;
+        private final Long y1;
 
         private final Long width;
         private final Long height;
 
         private final String url;
 
-        public Image(Long centerX, Long centerY, Long width, Long height, String url) {
-            this.centerX = centerX;
-            this.centerY = centerY;
+        public Image(Long x1, Long y1, Long width, Long height, String url) {
+            this.x1 = x1;
+            this.y1 = y1;
             this.width = width;
             this.height = height;
             this.url = url;
         }
     }
 
-    public RequestEntitiesJsonResponse(Long centerX, Long centerY, Long width, Long height, Entity[] entities) {
-        this.centerX = centerX;
-        this.centerY = centerY;
+    public RequestEntitiesJsonResponse(Long x1, Long y1, Long width, Long height, Entity[] entities) {
+        this.x1 = x1;
+        this.y1 = y1;
         this.width = width;
         this.height = height;
         this.entities = entities;
