@@ -43,7 +43,7 @@ public class DatabaseProxyTest extends AppConfigTest {
                         .toArray(String[]::new);
 
                 JsonResponseBuilder builder = new JsonResponseBuilder();
-                builder = proxy.getImages(builder, i + 50L, j + 50L, 100L, 100L);
+                builder = proxy.getImages(builder, i, j, 100L, 100L);
                 String[] actual = Arrays.stream(builder.build().getEntities())
                         .map(entity -> ((RequestEntitiesJsonResponse.Image) entity).getUrl())
                         .toArray(String[]::new);

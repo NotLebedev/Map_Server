@@ -31,12 +31,10 @@ public class DatabaseProxy {
         return DatabaseProxyLazyHolder.INSTANCE;
     }
 
-    public JsonResponseBuilder getImages(JsonResponseBuilder builder, Long centerX, Long centerY, Long width, Long height) {
+    public JsonResponseBuilder getImages(JsonResponseBuilder builder, Long x1, Long y1, Long width, Long height) {
 
-        Long x1 = centerX - width/2;
-        Long x2 = centerX + width/2;
-        Long y1 = centerY - height/2;
-        Long y2 = centerY + height/2;
+        Long x2 = x1 + width;
+        Long y2 = y1 + height;
 
         builder.addEntities(imageRepository.findOverlappingRectangle(x1, y1, x2, y2));
 

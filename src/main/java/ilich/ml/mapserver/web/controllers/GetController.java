@@ -3,6 +3,7 @@ package ilich.ml.mapserver.web.controllers;
 import ilich.ml.mapserver.web.RequestProxy;
 import ilich.ml.mapserver.web.responses.FailureJsonResponse;
 import ilich.ml.mapserver.web.responses.JsonResponse;
+import ilich.ml.mapserver.web.responses.RequestEntitiesJsonResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,16 @@ public class GetController {
 
     private RequestProxy requestProxy = RequestProxy.getInstance();
 
+    /**
+     * Get request mapping
+     * @param x upper left corner of view
+     * @param y upper left corner of view
+     * @param width full width
+     * @param height full height
+     * @return {@link JsonResponse} response container type of
+     * {@link RequestEntitiesJsonResponse}
+     * or {@link FailureJsonResponse}
+     */
     @RequestMapping("/requestEntities")
     public JsonResponse requestEntities(Long x, Long y, Long width, Long height) {
 

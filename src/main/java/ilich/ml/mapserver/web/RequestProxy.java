@@ -22,13 +22,21 @@ public class RequestProxy {
         return RequestProxyLazyHolder.INSTANCE;
     }
 
-    public RequestEntitiesJsonResponse requestEntitiesInView(Long centerX, Long centerY, Long width, Long height) {
+    /**
+     * Get json response container with all entities in specified view
+     * @param x1 upper left corner of view
+     * @param y1 upper left corner of view
+     * @param width full width of view
+     * @param height full height of view
+     * @return {@link RequestEntitiesJsonResponse} container with entities found
+     */
+    public RequestEntitiesJsonResponse requestEntitiesInView(Long x1, Long y1, Long width, Long height) {
 
         JsonResponseBuilder builder = new JsonResponseBuilder();
 
-        builder.centerX(centerX).centerY(centerY).width(width).height(height);
+        builder.centerX(x1).centerY(y1).width(width).height(height);
 
-        builder = db.getImages(builder, centerX, centerY, width, height);
+        builder = db.getImages(builder, x1, y1, width, height);
 
         return builder.build();
 
