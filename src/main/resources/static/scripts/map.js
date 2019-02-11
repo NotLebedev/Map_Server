@@ -1,7 +1,10 @@
-import {httpGet} from "./web.js";
+import {requestEntities} from "./web.js";
 
-var result = httpGet(window.location.toString() + "/requestEntities");
-console.log(result);
+let result = requestEntities(-500, -500, 1000, 1000);
+
+for(var i = 0; i < result.entities.length; i++) {
+    console.log(result.entities[i].url.toString());
+}
 
 let width = window.innerWidth;
 let height = window.innerHeight;
