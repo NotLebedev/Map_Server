@@ -41,7 +41,7 @@ for(var i = 0; i < entities.length; i++) {
 
 stage.add(layer);
 
-var scaleBy = 1.01;
+var scaleBy = 1.05;
 stage.on('wheel', e => {
     e.evt.preventDefault();
     var oldScale = stage.scaleX();
@@ -66,6 +66,38 @@ stage.on('wheel', e => {
     stage.position(newPos);
     stage.batchDraw();
 });
+
+var lastDist = 0;
+
+stage.getContent().addEventListener('touchmove', function(evt) {
+    var touch1 = evt.touches[0];
+    var touch2 = evt.touches[1];
+
+    if(touch1 && touch2) {
+        var dist = getDistance({
+            x: touch1.clientX,
+            y: touch1.clientY
+        }, {
+            x: touch2.clientX,
+            y: touch2.clientY
+        });
+
+        if(!lastDist) {
+            lastDist = dist;
+        }
+
+        var scale = stage.getScaleX() * dist / lastDist;
+
+        stage.scaleX(scale);
+        stage.scaleY(scale);
+        stage.draw();
+        lastDist = dist;
+    }
+}, false);
+
+stage.getContent().addEventListener('touchend', function() {
+    lastDist = 0;
+}, false);
 
 /*stage.on("dragmove", function () {
    console.log(stage.x());
