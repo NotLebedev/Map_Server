@@ -13,8 +13,6 @@ let stage = new Konva.Stage({
 });
 
 let layer = new Konva.Layer();
-let rectX = stage.getWidth() / 2 - 50;
-let rectY = stage.getHeight() / 2 - 25;
 
 for(var i = 0; i < entities.length; i++) {
 
@@ -72,37 +70,29 @@ stage.on('wheel', e => {
     stage.batchDraw();
 });
 
-var lastDist = 0;
+document.getElementById("zoomIn").addEventListener("click", function () {
 
-stage.getContent().addEventListener('touchmove', function(evt) {
-    var touch1 = evt.touches[0];
-    var touch2 = evt.touches[1];
+    var oldScale = stage.scaleX();
 
-    if(touch1 && touch2) {
-        var dist = getDistance({
-            x: touch1.clientX,
-            y: touch1.clientY
-        }, {
-            x: touch2.clientX,
-            y: touch2.clientY
-        });
+    var newScale = oldScale * scaleBy;
+    stage.scale({ x: newScale, y: newScale });
+    stage.draw();
+    layer.draw();
 
-        if(!lastDist) {
-            lastDist = dist;
-        }
+});
 
-        var scale = stage.getScaleX() * dist / lastDist;
+document.getElementById("zoomOut").addEventListener("click", function () {
 
-        stage.scaleX(scale);
-        stage.scaleY(scale);
-        stage.draw();
-        lastDist = dist;
-    }
-}, false);
+    var oldScale = stage.scaleX();
 
-stage.getContent().addEventListener('touchend', function() {
-    lastDist = 0;
-}, false);
+    var newScale = oldScale / scaleBy;
+    stage.scale({ x: newScale, y: newScale });
+    stage.draw();
+    layer.draw();
+
+});
+
+
 
 /*stage.on("dragmove", function () {
    console.log(stage.x());
