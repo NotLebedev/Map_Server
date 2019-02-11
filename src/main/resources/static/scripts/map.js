@@ -33,6 +33,11 @@ for(var i = 0; i < entities.length; i++) {
 
         layer.add(img);
 
+        setTimeout(function () {
+            layer.batchDraw();
+            stage.batchDraw();
+            console.log("qwe")}, 100);
+
     };
 
     imageObj.src = entity.url;
