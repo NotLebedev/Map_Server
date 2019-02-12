@@ -64,7 +64,7 @@ public class JsonResponseBuilder {
             String url = image.getImageUrl();
 
             entities.add(new RequestEntitiesJsonResponse.Image(
-                    x1, y1, width, height, url));
+                    image.getId(), x1, y1, width, height, url));
         });
 
         return this;

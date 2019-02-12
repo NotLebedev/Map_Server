@@ -22,6 +22,7 @@
 
     { //Possible entity types
     "type" : "image",
+    "id" : *number*,
 
     "x1" : *number*,
     "y1" : *number*,
