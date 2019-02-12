@@ -1,6 +1,5 @@
 import {requestEntities} from "./web.js";
-
-let entities = requestEntities(-500, -500, 1000, 1000).entities;
+import {loadElements} from "./loadController.js";
 
 let width = window.innerWidth;
 let height = window.innerHeight;
@@ -11,6 +10,8 @@ let stage = new Konva.Stage({
     height: height,
     draggable: true
 });
+
+let entities = loadElements(-stage.x(), -stage.y(), stage.width(), stage.height());
 
 let layer = new Konva.Layer();
 
@@ -94,6 +95,36 @@ document.getElementById("zoomOut").addEventListener("click", function () {
 
 
 
-/*stage.on("dragmove", function () {
-   console.log(stage.x());
-});*/
+stage.on("dragmove", function () {
+
+    let entities = loadElements(-stage.x(), -stage.y(), stage.width(), stage.height());
+
+    for(var i = 0; i < entities.length; i++) {
+
+        let entity = entities[i];
+
+        let imageObj = new Image();
+        imageObj.onload = new function () {
+
+            let img = new Konva.Image({
+                x : entity.x1,
+                y : entity.y1,
+                image : imageObj,
+                height : entity.height,
+                width : entity.width
+            });
+
+            layer.add(img);
+
+            //setTimeout(function () {
+                layer.batchDraw();
+                stage.batchDraw();
+                //console.log("qwe")}, 100);
+
+        };
+
+        imageObj.src = entity.url;
+
+    }
+
+});
