@@ -98,7 +98,12 @@ stage.on("dragmove", function () {
 
     console.log(-(stage.x() / stage.scaleX()));
 
-    for(var i = 0; i < entities.length; i++) {
+    let entities = loadElements(-(stage.x() / stage.scaleX()),
+        -(stage.y() / stage.scaleY()),
+        stage.width() / stage.scaleX(),
+        stage.height()/ stage.scaleY());
+
+    for(let i = 0; i < entities.length; i++) {
 
         let entity = entities[i];
 

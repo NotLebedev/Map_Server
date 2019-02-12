@@ -4,7 +4,7 @@ var loadedEntitiesId = [];
 
 export function loadElements(x1, y1, width, height) {
 
-    let response = requestEntities(x1, y1, height, width);
+    let response = requestEntities(Math.round(x1), Math.round(y1), Math.round(height), Math.round(width));
 
     if(response == null) {
 
