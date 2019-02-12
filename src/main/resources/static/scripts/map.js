@@ -1,4 +1,3 @@
-import {requestEntities} from "./web.js";
 import {loadElements} from "./loadController.js";
 
 let width = window.innerWidth;
@@ -15,12 +14,12 @@ let entities = loadElements(-stage.x(), -stage.y(), stage.width(), stage.height(
 
 let layer = new Konva.Layer();
 
-for(var i = 0; i < entities.length; i++) {
+for(let i = 0; i < entities.length; i++) {
 
     let entity = entities[i];
 
     let imageObj = new Image();
-    imageObj.onload = new function () {
+    imageObj.onload = () => {
 
         let img = new Konva.Image({
             x : entity.x1,
@@ -45,21 +44,21 @@ for(var i = 0; i < entities.length; i++) {
 
 stage.add(layer);
 
-var scaleBy = 1.05;
+const scaleBy = 1.05;
 stage.on('wheel', e => {
     e.evt.preventDefault();
-    var oldScale = stage.scaleX();
+    let oldScale = stage.scaleX();
 
-    var mousePointTo = {
+    let mousePointTo = {
         x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
         y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
     };
 
-    var newScale =
+    let newScale =
         e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
     stage.scale({ x: newScale, y: newScale });
 
-    var newPos = {
+    let newPos = {
         x:
             -(mousePointTo.x - stage.getPointerPosition().x / newScale) *
             newScale,
@@ -73,9 +72,9 @@ stage.on('wheel', e => {
 
 document.getElementById("zoomIn").addEventListener("click", function () {
 
-    var oldScale = stage.scaleX();
+    let oldScale = stage.scaleX();
 
-    var newScale = oldScale * scaleBy;
+    let newScale = oldScale * scaleBy;
     stage.scale({ x: newScale, y: newScale });
     stage.draw();
     layer.draw();
@@ -84,9 +83,9 @@ document.getElementById("zoomIn").addEventListener("click", function () {
 
 document.getElementById("zoomOut").addEventListener("click", function () {
 
-    var oldScale = stage.scaleX();
+    let oldScale = stage.scaleX();
 
-    var newScale = oldScale / scaleBy;
+    let newScale = oldScale / scaleBy;
     stage.scale({ x: newScale, y: newScale });
     stage.draw();
     layer.draw();
@@ -97,14 +96,14 @@ document.getElementById("zoomOut").addEventListener("click", function () {
 
 stage.on("dragmove", function () {
 
-    let entities = loadElements(-stage.x(), -stage.y(), stage.width(), stage.height());
+    console.log(-(stage.x() / stage.scaleX()));
 
     for(var i = 0; i < entities.length; i++) {
 
         let entity = entities[i];
 
         let imageObj = new Image();
-        imageObj.onload = new function () {
+        imageObj.onload = () => {
 
             let img = new Konva.Image({
                 x : entity.x1,

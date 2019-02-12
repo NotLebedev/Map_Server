@@ -14,9 +14,9 @@ export function loadElements(x1, y1, width, height) {
     }
 
     let entities = response.entities;
-    var ret = [];
+    let ret = [];
 
-    for(var i = 0; i < entities.length; i++) {
+    for(let i = 0; i < entities.length; i++) {
 
         let entity = entities[i];
 
