@@ -92,42 +92,50 @@ document.getElementById("zoomOut").addEventListener("click", function () {
 
 });
 
-
+let oldX = -stage.x();
+let oldY = -stage.y();
 
 stage.on("dragmove", function () {
 
-    console.log(-(stage.x() / stage.scaleX()));
+    if(Math.abs(-stage.x() - oldX) > 100 || Math.abs(-stage.y() - oldY) > 100) {
 
-    let entities = loadElements(-(stage.x() / stage.scaleX()),
-        -(stage.y() / stage.scaleY()),
-        stage.width() / stage.scaleX(),
-        stage.height()/ stage.scaleY());
+        //console.log(-(stage.x() / stage.scaleX()));
 
-    for(let i = 0; i < entities.length; i++) {
+        let entities = loadElements(-(stage.x() / stage.scaleX()),
+            -(stage.y() / stage.scaleY()),
+            stage.width() / stage.scaleX(),
+            stage.height()/ stage.scaleY());
 
-        let entity = entities[i];
+        for(let i = 0; i < entities.length; i++) {
 
-        let imageObj = new Image();
-        imageObj.onload = () => {
+            let entity = entities[i];
 
-            let img = new Konva.Image({
-                x : entity.x1,
-                y : entity.y1,
-                image : imageObj,
-                height : entity.height,
-                width : entity.width
-            });
+            let imageObj = new Image();
+            imageObj.onload = () => {
 
-            layer.add(img);
+                let img = new Konva.Image({
+                    x : entity.x1,
+                    y : entity.y1,
+                    image : imageObj,
+                    height : entity.height,
+                    width : entity.width
+                });
 
-            //setTimeout(function () {
-                layer.batchDraw();
-                stage.batchDraw();
-                //console.log("qwe")}, 100);
+                layer.add(img);
 
-        };
+                //setTimeout(function () {
+                    layer.batchDraw();
+                    stage.batchDraw();
+                    //console.log("qwe")}, 100);
 
-        imageObj.src = entity.url;
+            };
+
+            imageObj.src = entity.url;
+
+        }
+
+        oldX = -stage.x();
+        oldY = -stage.y();
 
     }
 
