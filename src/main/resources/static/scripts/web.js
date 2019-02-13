@@ -29,7 +29,7 @@ export function requestEntitiesAsync(x1, y1, height, width, callback) {
     let f = function (response) {
 
         let parse = JSON.parse(response);
-        if(response.responseType.toString() === "RequestEntitiesSuccess") {
+        if(parse.responseType.toString() === "RequestEntitiesSuccess") {
             callback(parse);
         }
 
