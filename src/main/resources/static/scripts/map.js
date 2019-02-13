@@ -97,48 +97,6 @@ let oldY = -stage.y();
 
 stage.on("dragmove", function () {
 
-    /*if(Math.abs(-stage.x() - oldX) > 100 || Math.abs(-stage.y() - oldY) > 100) {
-
-        //console.log(-(stage.x() / stage.scaleX()));
-
-        let entities = loadElements(-(stage.x() / stage.scaleX()),
-            -(stage.y() / stage.scaleY()),
-            stage.width() / stage.scaleX(),
-            stage.height()/ stage.scaleY());
-
-        for(let i = 0; i < entities.length; i++) {
-
-            let entity = entities[i];
-
-            let imageObj = new Image();
-            imageObj.onload = () => {
-
-                let img = new Konva.Image({
-                    x : entity.x1,
-                    y : entity.y1,
-                    image : imageObj,
-                    height : entity.height,
-                    width : entity.width
-                });
-
-                layer.add(img);
-
-                //setTimeout(function () {
-                    layer.batchDraw();
-                    stage.batchDraw();
-                    //console.log("qwe")}, 100);
-
-            };
-
-            imageObj.src = entity.url;
-
-        }
-
-        oldX = -stage.x();
-        oldY = -stage.y();
-
-    }*/
-
     if(Math.abs(-stage.x() - oldX) > 100 || Math.abs(-stage.y() - oldY) > 100) {
 
         let callback = function (entities) {
@@ -159,10 +117,8 @@ stage.on("dragmove", function () {
 
                     layer.add(img);
 
-                    //setTimeout(function () {
                     layer.batchDraw();
                     stage.batchDraw();
-                    //console.log("qwe")}, 100);
 
                 };
 
