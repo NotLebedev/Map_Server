@@ -1,6 +1,6 @@
 import {requestEntities, requestEntitiesAsync} from "./web.js";
 
-var loadedEntitiesId = [];
+let loadedEntitiesId = [];
 
 export function loadElements(x1, y1, width, height) {
 

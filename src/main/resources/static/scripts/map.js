@@ -130,10 +130,10 @@ stage.on("dragmove", function () {
             oldY = -stage.y();
         };
 
-        loadElementsAsync(-(stage.x() / stage.scaleX()),
-            -(stage.y() / stage.scaleY()),
-            stage.width() / stage.scaleX(),
-            stage.height()/ stage.scaleY(),
+        loadElementsAsync(-((stage.x() + stage.width()) / stage.scaleX()),
+            -((stage.y() + stage.height()) / stage.scaleY()),
+            stage.width() * 3 / stage.scaleX(),
+            stage.height() * 3/ stage.scaleY(),
             callback);
 
     }
