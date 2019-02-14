@@ -103,29 +103,24 @@ stage.on('wheel', e => {
 
 document.getElementById("zoomIn").addEventListener("click", function () {
 
-    let oldScale = stage.scaleX();
-
-    let newScale = oldScale * scaleBy;
-    stage.scale({ x: newScale, y: newScale });
-    updateLoad();
-    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggered
+    rescale({
+        x: -((stage.x() - stage.width()/2) / stage.scaleX()),
+        y: -((stage.y() - stage.height()/2) / stage.scaleY()),
+    }, true);
 
 });
 
 document.getElementById("zoomOut").addEventListener("click", function () {
 
-    let oldScale = stage.scaleX();
-
-    let newScale = oldScale / scaleBy;
-    stage.scale({ x: newScale, y: newScale });
-    updateLoad();
-    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggered
+    rescale({
+        x: -((stage.x() - stage.width()/2) / stage.scaleX()),
+        y: -((stage.y() - stage.height()/2) / stage.scaleY()),
+    }, false);
 
 });
 
 let oldX = -stage.x();
 let oldY = -stage.y();
-
 stage.on("dragmove", function () {
 
     if(Math.abs(-stage.x() - oldX) > 100 || Math.abs(-stage.y() - oldY) > 100)
