@@ -13,10 +13,10 @@ let stage = new Konva.Stage({
 let layer = new Konva.Layer();
 stage.add(layer);
 
-let updateLoad = function () {
+function updateLoad() {
 
     let callback = function (entities) {
-        for(let i = 0; i < entities.length; i++) {
+        for (let i = 0; i < entities.length; i++) {
 
             let entity = entities[i];
 
@@ -24,11 +24,11 @@ let updateLoad = function () {
             imageObj.onload = () => {
 
                 let img = new Konva.Image({
-                    x : entity.x1,
-                    y : entity.y1,
-                    image : imageObj,
-                    height : entity.height,
-                    width : entity.width
+                    x: entity.x1,
+                    y: entity.y1,
+                    image: imageObj,
+                    height: entity.height,
+                    width: entity.width
                 });
 
                 layer.add(img);
@@ -49,19 +49,21 @@ let updateLoad = function () {
     loadElementsAsync(-((stage.x() + stage.width()) / stage.scaleX()),  //Extending view three times
         -((stage.y() + stage.height()) / stage.scaleY()),               //seems to be perfect balance
         stage.width() * 3 / stage.scaleX(),                         //between smoothness
-        stage.height() * 3/ stage.scaleY(),                         //and performance
+        stage.height() * 3 / stage.scaleY(),                         //and performance
         callback);
 
-};
+}
 
-let initLoad = function() {
+function initLoad() {
 
     updateLoad();
 
     setTimeout(function () {
         layer.batchDraw();
-        stage.batchDraw();}, 100);
-};
+        stage.batchDraw();
+    }, 100);
+
+}
 
 initLoad();
 
@@ -89,7 +91,7 @@ stage.on('wheel', e => {
     };
     stage.position(newPos);
     updateLoad();
-    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggerd
+    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggered
 });
 
 document.getElementById("zoomIn").addEventListener("click", function () {
@@ -99,7 +101,7 @@ document.getElementById("zoomIn").addEventListener("click", function () {
     let newScale = oldScale * scaleBy;
     stage.scale({ x: newScale, y: newScale });
     updateLoad();
-    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggerd
+    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggered
 
 });
 
@@ -110,7 +112,7 @@ document.getElementById("zoomOut").addEventListener("click", function () {
     let newScale = oldScale / scaleBy;
     stage.scale({ x: newScale, y: newScale });
     updateLoad();
-    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggerd
+    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggered
 
 });
 
