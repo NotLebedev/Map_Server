@@ -1,4 +1,4 @@
-import {loadElements, loadElementsAsync} from "./loadController.js";
+import {loadElementsAsync} from "./loadController.js";
 
 let width = window.innerWidth;
 let height = window.innerHeight;
@@ -46,10 +46,10 @@ let updateLoad = function () {
         oldY = -stage.y();
     };
 
-    loadElementsAsync(-((stage.x() + stage.width()) / stage.scaleX()),
-        -((stage.y() + stage.height()) / stage.scaleY()),
-        stage.width() * 3 / stage.scaleX(),
-        stage.height() * 3/ stage.scaleY(),
+    loadElementsAsync(-((stage.x() + stage.width()) / stage.scaleX()),  //Extending view three times
+        -((stage.y() + stage.height()) / stage.scaleY()),               //seems to be perfect balance
+        stage.width() * 3 / stage.scaleX(),                         //between smoothness
+        stage.height() * 3/ stage.scaleY(),                         //and performance
         callback);
 
 };
@@ -89,7 +89,7 @@ stage.on('wheel', e => {
     };
     stage.position(newPos);
     updateLoad();
-    stage.batchDraw();
+    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggerd
 });
 
 document.getElementById("zoomIn").addEventListener("click", function () {
@@ -99,8 +99,7 @@ document.getElementById("zoomIn").addEventListener("click", function () {
     let newScale = oldScale * scaleBy;
     stage.scale({ x: newScale, y: newScale });
     updateLoad();
-    stage.draw();
-    layer.draw();
+    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggerd
 
 });
 
@@ -111,8 +110,7 @@ document.getElementById("zoomOut").addEventListener("click", function () {
     let newScale = oldScale / scaleBy;
     stage.scale({ x: newScale, y: newScale });
     updateLoad();
-    stage.draw();
-    layer.draw();
+    stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggerd
 
 });
 
