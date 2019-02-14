@@ -67,31 +67,38 @@ function initLoad() {
 
 initLoad();
 
-const scaleBy = 1.05;
-stage.on('wheel', e => {
-    e.evt.preventDefault();
+function rescale(scaleCenter, doScaleUp) {
+
     let oldScale = stage.scaleX();
 
     let mousePointTo = {
-        x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
-        y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
+        x: scaleCenter.x / oldScale - stage.x() / oldScale,
+        y: scaleCenter.y / oldScale - stage.y() / oldScale
     };
 
     let newScale =
-        e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+        doScaleUp ? oldScale * scaleBy : oldScale / scaleBy;
     stage.scale({ x: newScale, y: newScale });
 
     let newPos = {
         x:
-            -(mousePointTo.x - stage.getPointerPosition().x / newScale) *
+            -(mousePointTo.x - scaleCenter.x / newScale) *
             newScale,
         y:
-            -(mousePointTo.y - stage.getPointerPosition().y / newScale) *
+            -(mousePointTo.y - scaleCenter.y / newScale) *
             newScale
     };
     stage.position(newPos);
     updateLoad();
     stage.batchDraw();//Necessary because no pictures can be updated and then no redraw is triggered
+
+
+}
+
+const scaleBy = 1.05;
+stage.on('wheel', e => {
+    e.evt.preventDefault();
+    rescale(stage.getPointerPosition(), e.evt.deltaY > 0)
 });
 
 document.getElementById("zoomIn").addEventListener("click", function () {
