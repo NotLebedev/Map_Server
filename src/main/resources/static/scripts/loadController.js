@@ -1,7 +1,7 @@
 import {requestEntitiesAsync} from "./web.js";
 
-let loadedEntitiesId = [];
-let visitedPositions = [];
+const loadedEntitiesId = [];
+const visitedPositions = [];
 
 export function loadElementsAsync(x1, y1, width, height, callback) {
 

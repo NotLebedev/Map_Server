@@ -1,5 +1,5 @@
 function httpGetAsync(theUrl, callback) {
-    let xmlHttp = new XMLHttpRequest();
+    const xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
             callback(xmlHttp.responseText);
@@ -10,9 +10,9 @@ function httpGetAsync(theUrl, callback) {
 
 export function requestEntitiesAsync(x1, y1, height, width, callback) {
 
-    let f = function (response) {
+    const f = function (response) {
 
-        let parse = JSON.parse(response);
+        const parse = JSON.parse(response);
         if(parse.responseType.toString() === "RequestEntitiesSuccess") {
             callback(parse);
         }
