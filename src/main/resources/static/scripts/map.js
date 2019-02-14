@@ -1,17 +1,14 @@
 import {loadElementsAsync} from "./loadController.js";
 
-let width = window.innerWidth;
-let height = window.innerHeight;
-
 let stage = new Konva.Stage({
     container: 'container',
-    width: width,
-    height: height,
+    width: window.innerWidth,
+    height: window.innerHeight,
     draggable: true
 });
-
 let layer = new Konva.Layer();
 stage.add(layer);
+initLoad();
 
 function updateLoad() {
 
@@ -48,8 +45,8 @@ function updateLoad() {
 
     loadElementsAsync(-((stage.x() + stage.width()) / stage.scaleX()),  //Extending view three times
         -((stage.y() + stage.height()) / stage.scaleY()),               //seems to be perfect balance
-        stage.width() * 3 / stage.scaleX(),                         //between smoothness
-        stage.height() * 3 / stage.scaleY(),                         //and performance
+        stage.width() * 3 / stage.scaleX(),                             //between smoothness
+        stage.height() * 3 / stage.scaleY(),                            //and performance
         callback);
 
 }
@@ -64,8 +61,6 @@ function initLoad() {
     }, 100);
 
 }
-
-initLoad();
 
 function rescale(scaleCenter, doScaleUp) {
 
@@ -97,8 +92,10 @@ function rescale(scaleCenter, doScaleUp) {
 
 const scaleBy = 1.05;
 stage.on('wheel', e => {
+
     e.evt.preventDefault();
-    rescale(stage.getPointerPosition(), e.evt.deltaY > 0)
+    rescale(stage.getPointerPosition(), e.evt.deltaY > 0);
+
 });
 
 document.getElementById("zoomIn").addEventListener("click", function () {
