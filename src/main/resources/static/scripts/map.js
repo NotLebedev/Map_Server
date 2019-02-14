@@ -78,7 +78,7 @@ function rescale(scaleCenter, doScaleUp) {
 
     let newScale =
         doScaleUp ? oldScale * scaleBy : oldScale / scaleBy;
-    stage.scale({ x: newScale, y: newScale });
+    stage.scale({x: newScale, y: newScale});
 
     let newPos = {
         x:
@@ -104,8 +104,8 @@ stage.on('wheel', e => {
 document.getElementById("zoomIn").addEventListener("click", function () {
 
     rescale({
-        x: -((stage.x() - stage.width()/2) / stage.scaleX()),
-        y: -((stage.y() - stage.height()/2) / stage.scaleY()),
+        x: stage.width() / 2,
+        y: stage.height() / 2
     }, true);
 
 });
@@ -113,8 +113,8 @@ document.getElementById("zoomIn").addEventListener("click", function () {
 document.getElementById("zoomOut").addEventListener("click", function () {
 
     rescale({
-        x: -((stage.x() - stage.width()/2) / stage.scaleX()),
-        y: -((stage.y() - stage.height()/2) / stage.scaleY()),
+        x: stage.width() / 2,
+        y: stage.height() / 2
     }, false);
 
 });
