@@ -65,14 +65,17 @@ function initLoad() {
 function rescale(scaleCenter, doZoomIn, scaleFactor) {
 
     const oldScale = stage.scaleX();
+    const newScale =
+        doZoomIn ? oldScale * scaleFactor : oldScale / scaleFactor;
+
+    if(newScale > 5)  //No zooming in more than five times
+        return;
 
     const mousePointTo = {
         x: scaleCenter.x / oldScale - stage.x() / oldScale,
         y: scaleCenter.y / oldScale - stage.y() / oldScale
     };
 
-    const newScale =
-        doZoomIn ? oldScale * scaleFactor : oldScale / scaleFactor;
     stage.scale({x: newScale, y: newScale});
 
     const newPos = {
