@@ -39,8 +39,8 @@ function updateLoad() {
 
         }
 
-        oldX = -stage.x();
-        oldY = -stage.y();
+        oldX = -stage.x() / stage.scaleX();
+        oldY = -stage.y() / stage.scaleY();
     };
 
     loadElementsAsync(-((stage.x() + stage.width()) / stage.scaleX()),  //Extending view three times
@@ -119,7 +119,7 @@ let oldX = -stage.x();
 let oldY = -stage.y();
 stage.on("dragmove", function () {
 
-    if(Math.abs(-stage.x() - oldX) > 100 || Math.abs(-stage.y() - oldY) > 100)
+    if(Math.abs((-stage.x() / stage.scaleX()) - oldX) > 100 || Math.abs((-stage.y() / stage.scaleY()) - oldY) > 100)
         updateLoad();
 
 });
