@@ -9,7 +9,7 @@ export function loadElementsAsync(x1, y1, width, height, callback) {
 
     if(!visitedPositions.some(e => position.equals(e))) {
 
-        let f = function (response) {
+        const f = function (response) {
 
             if (response == null) {
 
@@ -20,12 +20,12 @@ export function loadElementsAsync(x1, y1, width, height, callback) {
 
             visitedPositions.push(position);
 
-            let entities = response.entities;
-            let ret = [];
+            const entities = response.entities;
+            const ret = [];
 
             for (let i = 0; i < entities.length; i++) {
 
-                let entity = entities[i];
+                const entity = entities[i];
 
                 if (!loadedEntitiesId.includes(entity.id)) {
                     loadedEntitiesId.push(entity.id);
