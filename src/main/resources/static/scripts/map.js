@@ -10,39 +10,60 @@ let stage = new Konva.Stage({
     draggable: true
 });
 
-let entities = loadElements(-stage.x(), -stage.y(), stage.width(), stage.height());
-
 let layer = new Konva.Layer();
+stage.add(layer);
 
-for(let i = 0; i < entities.length; i++) {
+let updateLoad = function () {
 
-    let entity = entities[i];
+    let callback = function (entities) {
+        for(let i = 0; i < entities.length; i++) {
 
-    let imageObj = new Image();
-    imageObj.onload = () => {
+            let entity = entities[i];
 
-        let img = new Konva.Image({
-            x : entity.x1,
-            y : entity.y1,
-            image : imageObj,
-            height : entity.height,
-            width : entity.width
-        });
+            let imageObj = new Image();
+            imageObj.onload = () => {
 
-        layer.add(img);
+                let img = new Konva.Image({
+                    x : entity.x1,
+                    y : entity.y1,
+                    image : imageObj,
+                    height : entity.height,
+                    width : entity.width
+                });
 
-        setTimeout(function () {
-            layer.batchDraw();
-            stage.batchDraw();
-            console.log("qwe")}, 100);
+                layer.add(img);
 
+                layer.batchDraw();
+                stage.batchDraw();
+
+            };
+
+            imageObj.src = entity.url;
+
+        }
+
+        oldX = -stage.x();
+        oldY = -stage.y();
     };
 
-    imageObj.src = entity.url;
+    loadElementsAsync(-((stage.x() + stage.width()) / stage.scaleX()),
+        -((stage.y() + stage.height()) / stage.scaleY()),
+        stage.width() * 3 / stage.scaleX(),
+        stage.height() * 3/ stage.scaleY(),
+        callback);
 
-}
+};
 
-stage.add(layer);
+let initLoad = function() {
+
+    updateLoad();
+
+    setTimeout(function () {
+        layer.batchDraw();
+        stage.batchDraw();}, 100);
+};
+
+initLoad();
 
 const scaleBy = 1.05;
 stage.on('wheel', e => {
@@ -67,6 +88,7 @@ stage.on('wheel', e => {
             newScale
     };
     stage.position(newPos);
+    updateLoad();
     stage.batchDraw();
 });
 
@@ -76,6 +98,7 @@ document.getElementById("zoomIn").addEventListener("click", function () {
 
     let newScale = oldScale * scaleBy;
     stage.scale({ x: newScale, y: newScale });
+    updateLoad();
     stage.draw();
     layer.draw();
 
@@ -87,6 +110,7 @@ document.getElementById("zoomOut").addEventListener("click", function () {
 
     let newScale = oldScale / scaleBy;
     stage.scale({ x: newScale, y: newScale });
+    updateLoad();
     stage.draw();
     layer.draw();
 
@@ -97,45 +121,7 @@ let oldY = -stage.y();
 
 stage.on("dragmove", function () {
 
-    if(Math.abs(-stage.x() - oldX) > 100 || Math.abs(-stage.y() - oldY) > 100) {
-
-        let callback = function (entities) {
-            for(let i = 0; i < entities.length; i++) {
-
-                let entity = entities[i];
-
-                let imageObj = new Image();
-                imageObj.onload = () => {
-
-                    let img = new Konva.Image({
-                        x : entity.x1,
-                        y : entity.y1,
-                        image : imageObj,
-                        height : entity.height,
-                        width : entity.width
-                    });
-
-                    layer.add(img);
-
-                    layer.batchDraw();
-                    stage.batchDraw();
-
-                };
-
-                imageObj.src = entity.url;
-
-            }
-
-            oldX = -stage.x();
-            oldY = -stage.y();
-        };
-
-        loadElementsAsync(-((stage.x() + stage.width()) / stage.scaleX()),
-            -((stage.y() + stage.height()) / stage.scaleY()),
-            stage.width() * 3 / stage.scaleX(),
-            stage.height() * 3/ stage.scaleY(),
-            callback);
-
-    }
+    if(Math.abs(-stage.x() - oldX) > 100 || Math.abs(-stage.y() - oldY) > 100)
+        updateLoad();
 
 });
