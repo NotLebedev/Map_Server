@@ -1,12 +1,12 @@
 import {loadElementsAsync} from "./loadController.js";
 
-let stage = new Konva.Stage({
+const stage = new Konva.Stage({
     container: 'container',
     width: window.innerWidth,
     height: window.innerHeight,
     draggable: true
 });
-let layer = new Konva.Layer();
+const layer = new Konva.Layer();
 stage.add(layer);
 initLoad();
 
@@ -15,12 +15,12 @@ function updateLoad() {
     let callback = function (entities) {
         for (let i = 0; i < entities.length; i++) {
 
-            let entity = entities[i];
+            const entity = entities[i];
 
-            let imageObj = new Image();
+            const imageObj = new Image();
             imageObj.onload = () => {
 
-                let img = new Konva.Image({
+                const img = new Konva.Image({
                     x: entity.x1,
                     y: entity.y1,
                     image: imageObj,
@@ -64,18 +64,18 @@ function initLoad() {
 
 function rescale(scaleCenter, doZoomIn, scaleFactor) {
 
-    let oldScale = stage.scaleX();
+    const oldScale = stage.scaleX();
 
-    let mousePointTo = {
+    const mousePointTo = {
         x: scaleCenter.x / oldScale - stage.x() / oldScale,
         y: scaleCenter.y / oldScale - stage.y() / oldScale
     };
 
-    let newScale =
+    const newScale =
         doZoomIn ? oldScale * scaleFactor : oldScale / scaleFactor;
     stage.scale({x: newScale, y: newScale});
 
-    let newPos = {
+    const newPos = {
         x:
             -(mousePointTo.x - scaleCenter.x / newScale) *
             newScale,
