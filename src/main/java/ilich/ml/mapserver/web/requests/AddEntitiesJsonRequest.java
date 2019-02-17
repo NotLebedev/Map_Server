@@ -21,7 +21,7 @@ public class AddEntitiesJsonRequest {
     @JsonSubTypes(
             @JsonSubTypes.Type(value = AddEntitiesJsonRequest.Image.class, name = "image")
     )
-    interface Entity {}
+    public interface Entity {}
 
     @Getter @Setter @ToString
     public static class Image implements Entity {

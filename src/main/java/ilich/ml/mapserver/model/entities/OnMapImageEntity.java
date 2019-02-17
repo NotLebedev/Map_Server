@@ -65,7 +65,7 @@ public class OnMapImageEntity {
         this.x2 = x1 + width;
         this.y2 = y1 + height;
 
-        this.imageUrl = getImageUrl();
+        this.imageUrl = imageUrl;
     }
 
 }

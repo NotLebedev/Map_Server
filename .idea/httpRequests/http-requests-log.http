@@ -7,24 +7,126 @@ Content-Type: application/json; charset=utf-8
   {
     "type" : "image",
 
-    "x1" : 145,
-    "y1" : -1500,
+    "x1" : 3000,
+    "y1" : 0,
 
-    "width" : 1000,
-    "height" : 1000,
+    "width" : 427,
+    "height" : 600,
 
-    "url" : "imgur.com/img.jpg"
+    "url" : "https://cdn.shopify.com/s/files/1/0797/5341/products/JDP_A2_Lithograph__Firepower_Creature_grande.jpg"
   },
   {
     "type" : "image",
 
-    "x1" : 123,
-    "y1" : -123,
+    "x1" : -3000,
+    "y1" : 0,
 
-    "width" : 50,
-    "height" : 200,
+    "width" : 1280,
+    "height" : 720,
 
-    "url" : "imgur.com/img.jpg"
+    "url" : "https://i.ytimg.com/vi/nxx3pkdA5Qk/maxresdefault.jpg"
+  }
+]}
+
+<> 2019-02-17T091351.200.json
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"entities": [
+  {
+    "type" : "image",
+
+    "x1" : 3000,
+    "y1" : 0,
+
+    "width" : 427,
+    "height" : 600,
+
+    "url" : "https://cdn.shopify.com/s/files/1/0797/5341/products/JDP_A2_Lithograph__Firepower_Creature_grande.jpg"
+  },
+  {
+    "type" : "image",
+
+    "x1" : -3000,
+    "y1" : 0,
+
+    "width" : 1280,
+    "height" : 720,
+
+    "url" : "https://i.ytimg.com/vi/nxx3pkdA5Qk/maxresdefault.jpg"
+  }
+]}
+
+<> 2019-02-17T091324.200.json
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"entities": [
+  {
+    "type" : "image",
+
+    "x1" : 3000,
+    "y1" : 0,
+
+    "width" : 427,
+    "height" : 600,
+
+    "url" : "https://cdn.shopify.com/s/files/1/0797/5341/products/JDP_A2_Lithograph__Firepower_Creature_grande.jpg"
+  },
+  {
+    "type" : "image",
+
+    "x1" : -3000,
+    "y1" : 0,
+
+    "width" : 1280,
+    "height" : 720,
+
+    "url" : "https://i.ytimg.com/vi/nxx3pkdA5Qk/maxresdefault.jpg"
+  }
+]}
+
+<> 2019-02-17T090534.200.json
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"entities": [
+  {
+    "type" : "image",
+
+    "x1" : 3000,
+    "y1" : 0,
+
+    "width" : 427,
+    "height" : 600,
+
+    "url" : "https://cdn.shopify.com/s/files/1/0797/5341/products/JDP_A2_Lithograph__Firepower_Creature_grande.jpg"
+  },
+  {
+    "type" : "image",
+
+    "x1" : -3000,
+    "y1" : 0,
+
+    "width" : 1280,
+    "height" : 720,
+
+    "url" : "https://i.ytimg.com/vi/nxx3pkdA5Qk/maxresdefault.jpg"
   }
 ]}
 
