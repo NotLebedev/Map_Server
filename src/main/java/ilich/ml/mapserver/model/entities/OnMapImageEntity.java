@@ -55,4 +55,17 @@ public class OnMapImageEntity {
         this.y1 = yCoordinate - imageSizeY/2;
         this.y2 = yCoordinate + imageSizeY/2;
     }
+
+    public OnMapImageEntity(Long x1, Long y1, Long width, Long height, String imageUrl) {
+        this.xCoordinate = x1 + width/2;
+        this.yCoordinate = y1 + width/2;
+
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x1 + width;
+        this.y2 = y1 + height;
+
+        this.imageUrl = getImageUrl();
+    }
+
 }

@@ -24,7 +24,7 @@ public class AddEntitiesJsonRequest {
     interface Entity {}
 
     @Getter @Setter @ToString
-    static class Image implements Entity {
+    public static class Image implements Entity {
 
         private Long x1;
         private Long y1;

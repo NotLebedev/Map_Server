@@ -1,8 +1,10 @@
 package ilich.ml.mapserver.model;
 
 import ilich.ml.mapserver.JsonResponseBuilder;
+import ilich.ml.mapserver.model.entities.OnMapImageEntity;
 import ilich.ml.mapserver.model.repositories.OnMapImageRepository;
 import ilich.ml.mapserver.model.repositories.RepositoryManagerBean;
+import ilich.ml.mapserver.web.requests.AddEntitiesJsonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -39,6 +41,18 @@ public class DatabaseProxy {
         builder.addEntities(imageRepository.findOverlappingRectangle(x1, y1, x2, y2));
 
         return builder;
+
+    }
+
+    public void addImage(AddEntitiesJsonRequest.Image image) {
+
+        OnMapImageEntity entity = new OnMapImageEntity(
+                image.getX1(), image.getY1(),
+                image.getWidth(), image.getHeight(),
+                image.getUrl()
+        );
+
+        imageRepository.save(entity);
 
     }
 
