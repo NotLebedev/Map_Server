@@ -1,0 +1,300 @@
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"entities": [
+  {
+    "type" : "image",
+
+    "x1" : 145,
+    "y1" : -1500,
+
+    "width" : 1000,
+    "height" : 1000,
+
+    "url" : "imgur.com/img.jpg"
+  },
+  {
+    "type" : "image",
+
+    "x1" : 123,
+    "y1" : -123,
+
+    "width" : 50,
+    "height" : 200,
+
+    "url" : "imgur.com/img.jpg"
+  }
+]}
+
+<> 2019-02-17T054629.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"entities": [
+  {
+    "type" : "image",
+
+    "x1" : 145,
+    "y1" : -1500,
+
+    "width" : 1000,
+    "height" : 1000,
+
+    "url" : "imgur.com/img.jpg"
+  },
+  {
+    "type" : "image",
+
+    "x1" : 123,
+    "y1" : -123,
+
+    "width" : 50,
+    "height" : 200,
+
+    "url" : "imgur.com/img.jpg"
+  }
+]}
+
+<> 2019-02-17T054421.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"entities": [
+  {
+    "type" : "image",
+
+    "x1" : 145,
+    "y1" : -1500,
+
+    "width" : 1000,
+    "height" : 1000,
+
+    "url" : "imgur.com/img.jpg"
+  },
+  {
+    "type" : "image",
+
+    "x1" : 123,
+    "y1" : -123,
+
+    "width" : 50,
+    "height" : 200,
+
+    "url" : "imgur.com/img.jpg"
+  }
+]}
+
+<> 2019-02-17T054244.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"entities": [
+  {
+    "type" : "image",
+
+    "x1" : 145,
+    "y1" : -1500,
+
+    "width" : 1000,
+    "height" : 1000,
+
+    "url" : "imgur.com/img.jpg"
+  },
+  {
+    "type" : "image",
+
+    "x1" : 123,
+    "y1" : -123,
+
+    "width" : 50,
+    "height" : 200,
+
+    "url" : "imgur.com/img.jpg"
+  }
+]}
+
+<> 2019-02-17T053822.500.json
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"str1":"qweqwe","int1":123}
+
+<> 2019-02-17T053225.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=utf-8
+
+{"str1":"qweqwe","int1":123}
+
+<> 2019-02-17T053120.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+{"str1":"qweqwe","int1":123}
+
+<> 2019-02-17T053012.415.json
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052622.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052609.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052606.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052605.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052603.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052602.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052601.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052600.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052559.200.txt
+
+###
+
+POST http://localhost:8080/addEntities
+Accept: */*
+Cache-Control: no-cache
+
+qweqwe
+
+<> 2019-02-17T052534.200.txt
+
+###
+
+POST http://localhost:8080/addEntities?json="qwe"
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-02-17T052516.400.json
+
+###
+
+POST http://localhost:8080/addEntities?json=qwe
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-02-17T052504.400.json
+
+###
+
+POST http://localhost:8080/addEntities?json="{"qwe":"qwe"}"
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-02-17T052445.400.json
+
+###
+
+POST http://localhost:8080/addEntities?json={"qwe":"qwe"}
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-02-17T052425.400.json
+
+###
+

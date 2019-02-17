@@ -1,5 +1,6 @@
 package ilich.ml.mapserver.web.controllers;
 
+import ilich.ml.mapserver.web.requests.AddEntitiesJsonRequest;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostController {
 
     @RequestMapping(value = "/addEntities" , method = RequestMethod.POST)
-    public String postAddEntities(@RequestBody String json) {
+    public String postAddEntities(@RequestBody AddEntitiesJsonRequest json) {
+
+        System.out.println(json.toString());
 
         return "{\"status\":\"success\"}";
 
