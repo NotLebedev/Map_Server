@@ -145,14 +145,17 @@ export function addNewImage(url, callback) {
             y: (-stage.y() / stage.scaleY()) + (stage.height() / 2 / stage.scaleY()),
             image: imageObj,
             height: imageObj.height,
-            width: imageObj.width,
-            draggable: true
+            width: imageObj.width
         });
 
         callback(img);
 
         layer.add(img);
-        addEntity(new ImageEntity(-1, img));
+
+        const ie = new ImageEntity(-1, img);
+        ie.enterEditMode();
+        ie.click();
+        addEntity(ie);
 
         layer.batchDraw();
         stage.batchDraw();

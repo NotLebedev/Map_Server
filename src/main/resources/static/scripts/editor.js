@@ -50,7 +50,7 @@ class EditorChanges {
             })
         }
 
-        //httpPostModifyAsync(images); Temporary removed for testing
+        httpPostModifyAsync(images);
 
     }
 
