@@ -41,7 +41,7 @@ public class ModifyJsonRequest {
             property = "type"
     )
     @JsonSubTypes(
-            @JsonSubTypes.Type(value = ImageAdded.class, name="image")
+            @JsonSubTypes.Type(value = ImageEdited.class, name="image")
     )
     public interface EntityEdited {}
 

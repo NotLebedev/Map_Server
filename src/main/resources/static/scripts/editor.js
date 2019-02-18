@@ -24,7 +24,7 @@ class EditorChanges {
 
     constructor() {
         this.addedKonvaImages = [];
-        this.modifiedKonvaImages = [];
+        this.editedKonvaImages = [];
 
         document.getElementById("save").addEventListener("click", this.saveAll.bind(this));
         document.getElementById("addImage").addEventListener("click", this.newImage.bind(this));
@@ -52,6 +52,22 @@ class EditorChanges {
 
         const edited = [];
 
+        for(let i = 0; i < this.editedKonvaImages.length; i++) {
+
+            const image = this.editedKonvaImages[i];
+
+            edited.push({
+                "type": "image",
+                "id": image.id,
+                "x1": image.konvaImage.x(),
+                "y1": image.konvaImage.y(),
+                "width" : image.konvaImage.width(),
+                "height" : image.konvaImage.height(),
+                "url" : image.konvaImage.image().src
+            })
+
+        }
+
         httpPostModifyAsync(added, edited);
 
     }
@@ -66,8 +82,8 @@ class EditorChanges {
 
     imageModified(image) {
 
-        if(!(this.modifiedKonvaImages.some(e => e.id === image.id) || image.id === -1)) {
-            this.modifiedKonvaImages.push(image);
+        if(!(this.editedKonvaImages.some(e => e.id === image.id) || image.id === -1)) {
+            this.editedKonvaImages.push(image);
             console.log("new image modified");
         }
 
