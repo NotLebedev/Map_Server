@@ -1,10 +1,28 @@
 let editorButton = document.getElementById("toggleEditor");
 let editorBar = document.getElementById("editBar");
 
+let editorChanges = null;
 editorButton.addEventListener("click", function () {
     editorBar.style.display = editorBar.style.display === "none" ? "block" : "none";
-    console.log(entityStorage);
+
+    if(editorChanges == null)
+        editorChanges = new EditorChanges();
+
 });
+
+class EditorChanges {
+
+    constructor() {
+        this.addedEntities = [];
+
+        document.getElementById("save").addEventListener("click", this.saveAll);
+    }
+
+    saveAll() {
+        console.log("saving");
+    }
+
+}
 
 export class ImageEntity {
 

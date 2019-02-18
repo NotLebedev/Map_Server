@@ -22,8 +22,10 @@
     <button class="button" id="zoomOut">-</button>
 </div>
 
-<div id="editBar">
-
+<div id="editBar" style="display: none">
+    <div id="saveButton">
+        <button id="save">Save</button>
+    </div>
 </div>
 
 <div id="editBarButton">
@@ -66,8 +68,6 @@
         height: 100%;
 
         background-color: aliceblue;
-
-        display: none;
     }
 
     #editBarButton {
@@ -79,6 +79,19 @@
     #toggleEditor {
         background: url("https://image.flaticon.com/icons/png/128/56/56763.png");
         background-size: 100% 100%;
+    }
+
+    #saveButton {
+        position: absolute;
+        width: 300px;
+        height: 75px;
+        left: 50%;
+        margin-left: -150px;
+        bottom: 30px;
+    }
+    #save {
+        width: 300px;
+        height: 75px;
     }
 
 </style>
