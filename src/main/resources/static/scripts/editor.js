@@ -26,8 +26,8 @@ class EditorChanges {
         this.addedKonvaImages = [];
         this.modifiedKonvaImages = [];
 
-        document.getElementById("save").addEventListener("click", this.saveAll);
-        document.getElementById("addImage").addEventListener("click", this.newImage);
+        document.getElementById("save").addEventListener("click", this.saveAll.bind(this));
+        document.getElementById("addImage").addEventListener("click", this.newImage.bind(this));
     }
 
     saveAll() {
@@ -36,9 +36,9 @@ class EditorChanges {
 
         const images = [];
 
-        for(let i = 0; i < editorChanges.addedKonvaImages.length; i++) {
+        for(let i = 0; i < this.addedKonvaImages.length; i++) {
 
-            const image = editorChanges.addedKonvaImages[i];
+            const image = this.addedKonvaImages[i];
 
             images.push({
                 "type": "image",
@@ -58,7 +58,7 @@ class EditorChanges {
         const url = document.getElementById("newImageSrc").value.toString();
 
         addNewImage(url, e => {
-            editorChanges.addedKonvaImages.push(e);
+            this.addedKonvaImages.push(e);
         });
     }
 
