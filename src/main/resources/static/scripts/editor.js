@@ -1,3 +1,5 @@
+import {addNewImage} from "./map.js";
+
 let editorButton = document.getElementById("toggleEditor");
 let editorBar = document.getElementById("editBar");
 
@@ -13,7 +15,7 @@ editorButton.addEventListener("click", function () {
 class EditorChanges {
 
     constructor() {
-        this.addedEntities = [];
+        this.addedKonvaImages = [];
 
         document.getElementById("save").addEventListener("click", this.saveAll);
         document.getElementById("addImage").addEventListener("click", this.newImage);
@@ -24,7 +26,11 @@ class EditorChanges {
     }
 
     newImage() {
-        console.log("adding");
+        const url = document.getElementById("newImageSrc").value.toString();
+
+        addNewImage(url, e => {
+            editorChanges.addedKonvaImages.push(e);
+        });
     }
 
 }
