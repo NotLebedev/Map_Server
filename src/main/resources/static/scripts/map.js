@@ -1,4 +1,5 @@
 import {loadElementsAsync} from "./loadController.js";
+import {ImageEntity, addEntity} from "./editor.js";
 
 const stage = new Konva.Stage({
     container: 'container',
@@ -29,6 +30,7 @@ function updateLoad() {
                 });
 
                 layer.add(img);
+                addEntity(new ImageEntity(entity.id, img));
 
                 layer.batchDraw();
                 stage.batchDraw();
