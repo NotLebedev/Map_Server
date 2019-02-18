@@ -67,6 +67,7 @@ export class ImageEntity {
         this.id = id;
         this.konvaImage = konvaImage;
         this.active = false;
+        this.anchor = null;
     }
 
     enterEditMode() {
@@ -117,16 +118,31 @@ export class ImageEntity {
             });
 
             addToLayer(anchor);
+            anchor.getLayer().batchDraw();
+            this.anchor = anchor;
 
         }else {
-            this.konvaImage.draggable(false);
+            if(this.anchor != null) {
+                const layer = this.anchor.getLayer();
+                this.anchor.destroy();
+                layer.batchDraw();
+            }
+
+            this.anchor = null;
+            layer.batchDraw();
         }
 
     }
 
     deactivate() {
+        if(this.anchor != null) {
+            const layer = this.anchor.getLayer();
+            this.anchor.destroy();
+            layer.batchDraw();
+        }
+
+        this.anchor = null;
         this.active = false;
-        this.konvaImage.draggable(false);
     }
 
     update(anchor) {
