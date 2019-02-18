@@ -1,4 +1,5 @@
 import {addNewImage} from "./map.js";
+import {httpPostAddNewEntitiesAsync} from "./web.js";
 
 let editorButton = document.getElementById("toggleEditor");
 let editorBar = document.getElementById("editBar");
@@ -22,7 +23,25 @@ class EditorChanges {
     }
 
     saveAll() {
-        console.log("saving");
+
+        const images = [];
+
+        for(let i = 0; i < editorChanges.addedKonvaImages.length; i++) {
+
+            const image = editorChanges.addedKonvaImages[i];
+
+            images.push({
+                "type": "image",
+                "x1" : image.x(),
+                "y1" : image.y(),
+                "width" : image.width(),
+                "height" : image.height(),
+                "url" : image.image().src
+            })
+        }
+
+        httpPostAddNewEntitiesAsync(images);
+
     }
 
     newImage() {

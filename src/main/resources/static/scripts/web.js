@@ -1,4 +1,5 @@
 function httpGetAsync(theUrl, callback) {
+
     const xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
@@ -6,6 +7,7 @@ function httpGetAsync(theUrl, callback) {
     };
     xmlHttp.open("GET", theUrl, true); // true for asynchronous
     xmlHttp.send(null);
+
 }
 
 export function requestEntitiesAsync(x1, y1, height, width, callback) {
@@ -22,5 +24,23 @@ export function requestEntitiesAsync(x1, y1, height, width, callback) {
     httpGetAsync(window.location.toString() +
         "/requestEntities?x=" + x1 + "&y=" + y1 + "&height=" + height + "&width=" + width,
         f);
+
+}
+
+function httpPostAsync(theUrl, data, callback) {
+
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = callback;
+    xmlHttp.open("POST", theUrl, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/json");
+    xmlHttp.send(data);
+
+}
+
+export function httpPostAddNewEntitiesAsync(entities) {
+
+    const body = JSON.stringify({"entities" : entities});
+    httpPostAsync(window.location.toString() + "/addEntities",
+        body, null);
 
 }
