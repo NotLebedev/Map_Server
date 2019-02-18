@@ -16,10 +16,15 @@ class EditorChanges {
         this.addedEntities = [];
 
         document.getElementById("save").addEventListener("click", this.saveAll);
+        document.getElementById("addImage").addEventListener("click", this.newImage);
     }
 
     saveAll() {
         console.log("saving");
+    }
+
+    newImage() {
+        console.log("adding");
     }
 
 }
