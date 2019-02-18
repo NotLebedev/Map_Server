@@ -24,12 +24,15 @@ class EditorChanges {
 
     constructor() {
         this.addedKonvaImages = [];
+        this.modifiedKonvaImages = [];
 
         document.getElementById("save").addEventListener("click", this.saveAll);
         document.getElementById("addImage").addEventListener("click", this.newImage);
     }
 
     saveAll() {
+
+        entityStorage.forEach(e => e.deactivate());
 
         const images = [];
 
@@ -47,7 +50,7 @@ class EditorChanges {
             })
         }
 
-        httpPostAddNewEntitiesAsync(images);
+        //httpPostAddNewEntitiesAsync(images); Temporary removed for testing
 
     }
 
@@ -59,6 +62,15 @@ class EditorChanges {
         });
     }
 
+    imageModified(image) {
+
+        if(!this.modifiedKonvaImages.some(e => e.id === image.id)) {
+            this.modifiedKonvaImages.push(image);
+            console.log("new image modified");
+        }
+
+    }
+
 }
 
 export class ImageEntity {
@@ -68,6 +80,7 @@ export class ImageEntity {
         this.konvaImage = konvaImage;
         this.active = false;
         this.anchor = null;
+        this.edited = false;
     }
 
     enterEditMode() {
@@ -141,6 +154,9 @@ export class ImageEntity {
             layer.batchDraw();
         }
 
+        if(this.active && this.edited)
+            editorChanges.imageModified(this);
+
         this.anchor = null;
         this.active = false;
     }
@@ -148,6 +164,7 @@ export class ImageEntity {
     update(anchor) {
         this.konvaImage.x(anchor.x());
         this.konvaImage.y(anchor.y());
+        this.edited = true;
     }
 
 }
