@@ -11,33 +11,36 @@ const layer = new Konva.Layer();
 stage.add(layer);
 initLoad();
 
+export function drawEntity(entity) {
+    const imageObj = new Image();
+    imageObj.onload = () => {
+
+        const img = new Konva.Image({
+            x: entity.x1,
+            y: entity.y1,
+            image: imageObj,
+            height: entity.height,
+            width: entity.width
+        });
+
+        layer.add(img);
+        addEntity(new ImageEntity(entity.id, img));
+
+        layer.batchDraw();
+        stage.batchDraw();
+
+    };
+
+    imageObj.src = entity.url;
+}
+
 function updateLoad() {
 
     const callback = function (entities) {
         for (let i = 0; i < entities.length; i++) {
 
             const entity = entities[i];
-
-            const imageObj = new Image();
-            imageObj.onload = () => {
-
-                const img = new Konva.Image({
-                    x: entity.x1,
-                    y: entity.y1,
-                    image: imageObj,
-                    height: entity.height,
-                    width: entity.width
-                });
-
-                layer.add(img);
-                addEntity(new ImageEntity(entity.id, img));
-
-                layer.batchDraw();
-                stage.batchDraw();
-
-            };
-
-            imageObj.src = entity.url;
+            drawEntity(entity)
 
         }
 
