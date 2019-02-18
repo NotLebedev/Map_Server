@@ -8,6 +8,12 @@ let editorChanges = null;
 editorButton.addEventListener("click", function () {
     editorBar.style.display = editorBar.style.display === "none" ? "block" : "none";
 
+    if(editorBar.style.display === "block") {
+        entityStorage.forEach(e => {e.enterEditMode()});
+    }else {
+        entityStorage.forEach(e => {e.exitEditMode()});
+    }
+
     if(editorChanges == null)
         editorChanges = new EditorChanges();
 
@@ -59,6 +65,38 @@ export class ImageEntity {
     constructor(id, konvaImage) {
         this.id = id;
         this.konvaImage = konvaImage;
+        this.active = false;
+    }
+
+    enterEditMode() {
+        this.konvaImage.off("click");
+        this.konvaImage.off("mouseout");
+        this.konvaImage.on("click", this.click.bind(this));
+        this.konvaImage.on("mouseout", this.mouseOut.bind(this));
+    }
+
+    exitEditMode() {
+        this.konvaImage.off("click");
+        this.konvaImage.off("mouseout");
+        this.konvaImage.on("click", e => {});
+        this.konvaImage.on("mouseout", e => {});
+    }
+
+    click() {
+
+        this.active = !this.active;
+
+        if(this.active) {
+            this.konvaImage.draggable(true);
+        }else {
+            this.konvaImage.draggable(false);
+        }
+
+    }
+
+    mouseOut() {
+        this.active = false;
+        this.konvaImage.draggable(false);
     }
 
 }
