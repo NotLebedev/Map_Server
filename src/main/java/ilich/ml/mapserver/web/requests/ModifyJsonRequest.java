@@ -13,6 +13,7 @@ import lombok.ToString;
 public class ModifyJsonRequest {
 
     private EntityAdded[] added;
+    private EntityEdited[] edited;
 
     @JsonTypeInfo(
             use = JsonTypeInfo.Id.NAME,
@@ -33,6 +34,30 @@ public class ModifyJsonRequest {
         private Long height;
 
         private String url;
+    }
+
+    @JsonTypeInfo(
+            use = JsonTypeInfo.Id.NAME,
+            property = "type"
+    )
+    @JsonSubTypes(
+            @JsonSubTypes.Type(value = ImageAdded.class, name="image")
+    )
+    public interface EntityEdited {}
+
+    @Getter @Setter @ToString
+    public static class ImageEdited implements EntityEdited {
+
+        private Long id;
+
+        private Long x1;
+        private Long y1;
+
+        private Long width;
+        private Long height;
+
+        private String url;
+
     }
 
 }
