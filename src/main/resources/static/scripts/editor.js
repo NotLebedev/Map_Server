@@ -1,5 +1,5 @@
 import {addNewImage} from "./map.js";
-import {httpPostAddNewEntitiesAsync} from "./web.js";
+import {httpPostModifyAsync} from "./web.js";
 import {addToLayer} from "./map.js";
 
 let editorButton = document.getElementById("toggleEditor");
@@ -50,7 +50,7 @@ class EditorChanges {
             })
         }
 
-        //httpPostAddNewEntitiesAsync(images); Temporary removed for testing
+        //httpPostModifyAsync(images); Temporary removed for testing
 
     }
 

@@ -26,12 +26,12 @@ public class RequestProxy {
     }
 
     /**
-     * Get json response container with all entities in specified view
+     * Get json response container with all added in specified view
      * @param x1 upper left corner of view
      * @param y1 upper left corner of view
      * @param width full width of view
      * @param height full height of view
-     * @return {@link RequestEntitiesJsonResponse} container with entities found
+     * @return {@link RequestEntitiesJsonResponse} container with added found
      */
     public RequestEntitiesJsonResponse requestEntitiesInView(Long x1, Long y1, Long width, Long height) {
 
@@ -47,7 +47,7 @@ public class RequestProxy {
 
     public void addEntities(AddEntitiesJsonRequest request) {
 
-        Arrays.stream(request.getEntities()).forEach(entity -> {
+        Arrays.stream(request.getAdded()).forEach(entity -> {
             if(entity instanceof AddEntitiesJsonRequest.Image)
                 db.addImage(((AddEntitiesJsonRequest.Image) entity));
         });

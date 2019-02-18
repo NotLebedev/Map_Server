@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class AddEntitiesJsonRequest {
 
-    private Entity[] entities;
+    private Entity[] added;
 
     @JsonTypeInfo(
             use = JsonTypeInfo.Id.NAME,
