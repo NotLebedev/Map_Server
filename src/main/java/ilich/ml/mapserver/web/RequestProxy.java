@@ -52,6 +52,11 @@ public class RequestProxy {
                 db.addImage(((ModifyJsonRequest.ImageAdded) entity));
         });
 
+        Arrays.stream(request.getEdited()).forEach(entity -> {
+            if(entity instanceof ModifyJsonRequest.ImageEdited)
+                db.updateImage(((ModifyJsonRequest.ImageEdited) entity));
+        });
+
     }
 
 
