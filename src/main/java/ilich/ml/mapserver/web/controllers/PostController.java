@@ -1,7 +1,7 @@
 package ilich.ml.mapserver.web.controllers;
 
 import ilich.ml.mapserver.web.RequestProxy;
-import ilich.ml.mapserver.web.requests.AddEntitiesJsonRequest;
+import ilich.ml.mapserver.web.requests.ModifyJsonRequest;
 import ilich.ml.mapserver.web.responses.JsonResponse;
 import ilich.ml.mapserver.web.responses.SuccessJsonResponse;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +18,9 @@ public class PostController {
     private final RequestProxy requestProxy = RequestProxy.getInstance();
 
     @RequestMapping(value = "/addEntities" , method = RequestMethod.POST)
-    public JsonResponse postAddEntities(@RequestBody AddEntitiesJsonRequest json) {
+    public JsonResponse postAddEntities(@RequestBody ModifyJsonRequest json) {
 
-        requestProxy.addEntities(json);
+        requestProxy.modifyEntities(json);
 
         return new SuccessJsonResponse();
 

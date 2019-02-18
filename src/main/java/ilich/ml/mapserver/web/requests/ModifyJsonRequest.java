@@ -10,21 +10,21 @@ import lombok.ToString;
  * @author NotLebedev
  */
 @Getter @Setter @ToString
-public class AddEntitiesJsonRequest {
+public class ModifyJsonRequest {
 
-    private Entity[] added;
+    private EntityAdded[] added;
 
     @JsonTypeInfo(
             use = JsonTypeInfo.Id.NAME,
             property = "type"
     )
     @JsonSubTypes(
-            @JsonSubTypes.Type(value = AddEntitiesJsonRequest.Image.class, name = "image")
+            @JsonSubTypes.Type(value = ImageAdded.class, name = "image")
     )
-    public interface Entity {}
+    public interface EntityAdded {}
 
     @Getter @Setter @ToString
-    public static class Image implements Entity {
+    public static class ImageAdded implements EntityAdded {
 
         private Long x1;
         private Long y1;

@@ -4,7 +4,7 @@ import ilich.ml.mapserver.JsonResponseBuilder;
 import ilich.ml.mapserver.model.entities.OnMapImageEntity;
 import ilich.ml.mapserver.model.repositories.OnMapImageRepository;
 import ilich.ml.mapserver.model.repositories.RepositoryManagerBean;
-import ilich.ml.mapserver.web.requests.AddEntitiesJsonRequest;
+import ilich.ml.mapserver.web.requests.ModifyJsonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -44,7 +44,7 @@ public class DatabaseProxy {
 
     }
 
-    public void addImage(AddEntitiesJsonRequest.Image image) {
+    public void addImage(ModifyJsonRequest.ImageAdded image) {
 
         OnMapImageEntity entity = new OnMapImageEntity(
                 image.getX1(), image.getY1(),

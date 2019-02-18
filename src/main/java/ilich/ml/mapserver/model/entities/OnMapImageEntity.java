@@ -28,7 +28,7 @@ public class OnMapImageEntity {
     @Getter @Setter
     private Long yCoordinate;//Center of the image
 
-    //Image bounding box
+    //ImageAdded bounding box
     @Getter @Setter
     private Long x1;
     @Getter @Setter

@@ -2,7 +2,7 @@ package ilich.ml.mapserver.web;
 
 import ilich.ml.mapserver.JsonResponseBuilder;
 import ilich.ml.mapserver.model.DatabaseProxy;
-import ilich.ml.mapserver.web.requests.AddEntitiesJsonRequest;
+import ilich.ml.mapserver.web.requests.ModifyJsonRequest;
 import ilich.ml.mapserver.web.responses.RequestEntitiesJsonResponse;
 
 import java.util.Arrays;
@@ -45,11 +45,11 @@ public class RequestProxy {
 
     }
 
-    public void addEntities(AddEntitiesJsonRequest request) {
+    public void modifyEntities(ModifyJsonRequest request) {
 
         Arrays.stream(request.getAdded()).forEach(entity -> {
-            if(entity instanceof AddEntitiesJsonRequest.Image)
-                db.addImage(((AddEntitiesJsonRequest.Image) entity));
+            if(entity instanceof ModifyJsonRequest.ImageAdded)
+                db.addImage(((ModifyJsonRequest.ImageAdded) entity));
         });
 
     }
