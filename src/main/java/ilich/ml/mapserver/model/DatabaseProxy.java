@@ -59,8 +59,11 @@ public class DatabaseProxy {
 
     public void updateImage(ModifyJsonRequest.ImageEdited image) {
 
-        LoggerFactory.getLogger(this.getClass())
-                .warn("Supposed to update image : " + image.toString());
+        imageRepository.updateImage(image.getId(),
+                image.getX1(), image.getY1(),
+                image.getX1() + image.getWidth(), image.getY1() + image.getHeight(),
+                image.getX1() + image.getWidth()/2, image.getY1() + image.getHeight()/2,
+                image.getUrl());
 
     }
 

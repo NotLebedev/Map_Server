@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -34,8 +35,9 @@ public interface OnMapImageRepository extends CrudRepository<OnMapImageEntity, L
     //Okay, maybe this query is slower (only ~5%), but it works perfectly well with view entirely inside of image
     List<OnMapImageEntity> findOverlappingRectangle(final Long x1, final Long y1, final Long x2, final Long y2);
 
+    @Transactional
     @Modifying(clearAutomatically = true)
-    @Query("UPDATE OnMapImageEntity SET x1 = :x1, y1 = :y1, x2 = :x2, y2 = :y2, XCoordinate = :centerX, YCoordinate = :centerY, imageUrl = :url WHERE id = :id")
+    @Query("UPDATE OnMapImageEntity SET x1 = :x1, y1 = :y1, x2 = :x2, y2 = :y2, X_Coordinate = :centerX, Y_Coordinate = :centerY, image_Url = :url WHERE id = :id")
     int updateImage(@Param("id") final Long id,
                     @Param("x1") final Long x1, @Param("y1") final Long y1, @Param("x2") final Long x2, @Param("y2") final Long y2,
                     @Param("centerX") final Long centerX, @Param("centerY") final Long centerY, @Param("url") final String url);
