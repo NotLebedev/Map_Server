@@ -66,7 +66,7 @@ class EditorChanges {
 
     imageModified(image) {
 
-        if(!this.modifiedKonvaImages.some(e => e.id === image.id)) {
+        if(!(this.modifiedKonvaImages.some(e => e.id === image.id) || image.id === -1)) {
             this.modifiedKonvaImages.push(image);
             console.log("new image modified");
         }
