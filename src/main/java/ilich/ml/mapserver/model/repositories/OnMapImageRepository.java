@@ -1,8 +1,10 @@
 package ilich.ml.mapserver.model.repositories;
 
 import ilich.ml.mapserver.model.entities.OnMapImageEntity;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,5 +33,11 @@ public interface OnMapImageRepository extends CrudRepository<OnMapImageEntity, L
     @Query("FROM  OnMapImageEntity WHERE NOT (x2 < ?1 OR y2 < ?2 OR x1 > ?3 OR y1 > ?4)")
     //Okay, maybe this query is slower (only ~5%), but it works perfectly well with view entirely inside of image
     List<OnMapImageEntity> findOverlappingRectangle(final Long x1, final Long y1, final Long x2, final Long y2);
+
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE OnMapImageEntity SET x1 = :x1, y1 = :y1, x2 = :x2, y2 = :y2, XCoordinate = :centerX, YCoordinate = :centerY, imageUrl = :url WHERE id = :id")
+    int updateImage(@Param("id") final Long id,
+                    @Param("x1") final Long x1, @Param("y1") final Long y1, @Param("x2") final Long x2, @Param("y2") final Long y2,
+                    @Param("centerX") final Long centerX, @Param("centerY") final Long centerY, @Param("url") final String url);
 
 }
