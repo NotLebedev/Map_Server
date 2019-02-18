@@ -162,3 +162,7 @@ export function addNewImage(url, callback) {
     imageObj.src = url;
 
 }
+
+export function addToLayer(e) {
+    layer.add(e);
+}

@@ -1,5 +1,6 @@
 import {addNewImage} from "./map.js";
 import {httpPostAddNewEntitiesAsync} from "./web.js";
+import {addToLayer} from "./map.js";
 
 let editorButton = document.getElementById("toggleEditor");
 let editorBar = document.getElementById("editBar");
@@ -70,33 +71,67 @@ export class ImageEntity {
 
     enterEditMode() {
         this.konvaImage.off("click");
-        this.konvaImage.off("mouseout");
         this.konvaImage.on("click", this.click.bind(this));
-        this.konvaImage.on("mouseout", this.mouseOut.bind(this));
     }
 
     exitEditMode() {
+        this.deactivate();
         this.konvaImage.off("click");
-        this.konvaImage.off("mouseout");
         this.konvaImage.on("click", e => {});
-        this.konvaImage.on("mouseout", e => {});
     }
 
     click() {
 
+        entityStorage.forEach(e => e.deactivate());
+
         this.active = !this.active;
 
         if(this.active) {
-            this.konvaImage.draggable(true);
+
+            let anchor = new Konva.Circle({
+                x: this.konvaImage.x(),
+                y: this.konvaImage.y(),
+                stroke: '#666',
+                fill: '#ddd',
+                strokeWidth: 2,
+                radius: 8,
+                draggable: true,
+                dragOnTop: false
+            });
+            anchor.on('mouseover', function() {
+                var layer = this.getLayer();
+                document.body.style.cursor = 'pointer';
+                this.setStrokeWidth(4);
+                layer.draw();
+            });
+            anchor.on('mouseout', function() {
+                var layer = this.getLayer();
+                document.body.style.cursor = 'default';
+                this.setStrokeWidth(2);
+                layer.draw();
+            });
+
+            const ctx = this;
+            anchor.on("dragmove", function () {
+               ctx.update(this);
+            });
+
+            addToLayer(anchor);
+
         }else {
             this.konvaImage.draggable(false);
         }
 
     }
 
-    mouseOut() {
+    deactivate() {
         this.active = false;
         this.konvaImage.draggable(false);
+    }
+
+    update(anchor) {
+        this.konvaImage.x(anchor.x());
+        this.konvaImage.y(anchor.y());
     }
 
 }
