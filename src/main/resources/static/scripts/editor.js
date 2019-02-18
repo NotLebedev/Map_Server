@@ -34,13 +34,13 @@ class EditorChanges {
 
         entityStorage.forEach(e => e.deactivate());
 
-        const images = [];
+        const added = [];
 
         for(let i = 0; i < this.addedKonvaImages.length; i++) {
 
             const image = this.addedKonvaImages[i];
 
-            images.push({
+            added.push({
                 "type": "image",
                 "x1" : image.x(),
                 "y1" : image.y(),
@@ -50,7 +50,9 @@ class EditorChanges {
             })
         }
 
-        httpPostModifyAsync(images);
+        const edited = [];
+
+        httpPostModifyAsync(added, edited);
 
     }
 
