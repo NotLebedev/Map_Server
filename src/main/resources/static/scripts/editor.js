@@ -24,10 +24,10 @@ class EditorChanges { //Editor mode changelist
 
     constructor() {
         document.getElementById("save").addEventListener("click", this.saveAll.bind(this));
-        document.getElementById("addImage").addEventListener("click", e => {
+        document.getElementById("addImage").addEventListener("click", () => {
             const url = document.getElementById("newImageSrc").value.toString();
 
-            addNewImage(url, e => {});
+            addNewImage(url);
         });
     }
 
@@ -175,10 +175,7 @@ export class ImageEntity {
                 layer.draw();
             });
 
-            deleteAnchor.on("click", function() {
-                console.log("Deleting image");
-                ctx.delete();
-            });
+            deleteAnchor.on("click", () => ctx.deleted ? ctx.restore() : ctx.delete());
 
             addToLayer(deleteAnchor);
             this.deleteAnchor = deleteAnchor;
@@ -220,6 +217,15 @@ export class ImageEntity {
         this.konvaImage.getLayer().batchDraw();
 
         this.deleted = true;
+
+    }
+
+    restore() {
+
+        this.konvaImage.strokeEnabled(false);
+        this.konvaImage.getLayer().batchDraw();
+
+        this.deleted = false;
 
     }
 

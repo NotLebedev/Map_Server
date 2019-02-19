@@ -138,7 +138,7 @@ stage.on("dragmove", function () {
 });
 
 let newAddedCounter = 1;
-export function addNewImage(url, callback) { //Function for adding images in edit mode
+export function addNewImage(url) { //Function for adding images in edit mode
 
     const imageObj = new Image();
     imageObj.onload = () => {
@@ -150,8 +150,6 @@ export function addNewImage(url, callback) { //Function for adding images in edi
             height: imageObj.height,
             width: imageObj.width
         });
-
-        callback(img);
 
         layer.add(img);
 
