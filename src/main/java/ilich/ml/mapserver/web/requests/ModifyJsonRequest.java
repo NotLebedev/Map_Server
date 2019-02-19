@@ -61,13 +61,20 @@ public class ModifyJsonRequest {
 
     }
 
+    @JsonTypeInfo(
+            use = JsonTypeInfo.Id.NAME,
+            property = "type"
+    )
+    @JsonSubTypes(
+            @JsonSubTypes.Type(value = ImageDeleted.class, name="image")
+    )
     @Getter @Setter @ToString
     public static class EntityDeleted {
-
-        private String type;
 
         private Long id;
 
     }
+
+    public static class ImageDeleted extends EntityDeleted {}
 
 }

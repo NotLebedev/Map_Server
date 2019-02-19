@@ -57,6 +57,11 @@ public class RequestProxy {
                 db.updateImage(((ModifyJsonRequest.ImageEdited) entity));
         });
 
+        Arrays.stream(request.getDeleted()).forEach(entity -> {
+            if(entity instanceof ModifyJsonRequest.ImageDeleted)
+                db.deleteImage(((ModifyJsonRequest.ImageDeleted) entity));
+        });
+
     }
 
 

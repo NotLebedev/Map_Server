@@ -67,4 +67,9 @@ public class DatabaseProxy {
 
     }
 
+    public void deleteImage(ModifyJsonRequest.ImageDeleted image) {
+            LoggerFactory.getLogger(this.getClass()).info(image.toString());
+
+    }
+
 }
