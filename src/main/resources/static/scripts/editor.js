@@ -24,7 +24,11 @@ class EditorChanges { //Editor mode changelist
 
     constructor() {
         document.getElementById("save").addEventListener("click", this.saveAll.bind(this));
-        document.getElementById("addImage").addEventListener("click", this.newImage.bind(this));
+        document.getElementById("addImage").addEventListener("click", e => {
+            const url = document.getElementById("newImageSrc").value.toString();
+
+            addNewImage(url, e => {});
+        });
     }
 
     saveAll() { //Build entities modify request and POST it to server
@@ -82,12 +86,6 @@ class EditorChanges { //Editor mode changelist
 
         httpPostModifyAsync(added, edited);
 
-    }
-
-    newImage() {
-        const url = document.getElementById("newImageSrc").value.toString();
-
-        addNewImage(url, e => {});
     }
 
 }
