@@ -123,6 +123,7 @@ export class ImageEntity {
         this.konvaImage = konvaImage;
         this.active = false;
         this.dragAnchor = null;
+        this.deleteAnchor = null;
         this.edited = false;
     }
 
@@ -174,8 +175,38 @@ export class ImageEntity {
             });
 
             addToLayer(anchor);
-            anchor.getLayer().batchDraw();
             this.dragAnchor = anchor;
+
+            let deleteAnchor = new Konva.Circle({ //Adding drag anchor
+                x: this.konvaImage.x() + this.konvaImage.width(),
+                y: this.konvaImage.y(),
+                stroke: '#750000',
+                fill: '#dd0000',
+                strokeWidth: 2,
+                radius: 8,
+                draggable: false,
+                dragOnTop: false
+            });
+            deleteAnchor.on('mouseover', function() {
+                let layer = this.getLayer();
+                document.body.style.cursor = 'pointer';
+                this.setStrokeWidth(4);
+                layer.draw();
+            });
+            deleteAnchor.on('mouseout', function() {
+                let layer = this.getLayer();
+                document.body.style.cursor = 'default';
+                this.setStrokeWidth(2);
+                layer.draw();
+            });
+
+            deleteAnchor.on("click", function() {
+                console.log("Deleting image");
+            });
+
+            addToLayer(deleteAnchor);
+            this.deleteAnchor = deleteAnchor;
+            anchor.getLayer().batchDraw();
 
         }else {
             if(this.dragAnchor != null) {
