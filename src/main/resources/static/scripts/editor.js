@@ -95,7 +95,7 @@ class EditorChanges { //Editor mode changelist
 
         }
 
-        httpPostModifyAsync(added, edited, deleted);
+        httpPostModifyAsync(added, edited, deleted, () => window.location.reload(true));
 
     }
 

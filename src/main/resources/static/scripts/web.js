@@ -37,10 +37,10 @@ function httpPostAsync(theUrl, data, callback) {
 
 }
 
-export function httpPostModifyAsync(added, edited, deleted) {
+export function httpPostModifyAsync(added, edited, deleted, callback) {
 
     const body = JSON.stringify({"added": added, "edited": edited, "deleted": deleted});
     httpPostAsync(window.location.toString() + "/addEntities",
-        body, null);
+        body, callback);
 
 }
