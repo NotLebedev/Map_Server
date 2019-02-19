@@ -43,7 +43,7 @@ class EditorChanges { //Editor mode changelist
 
             if(e.id < 0 && !e.deleted)
                 this.addedKonvaImages.push(e);
-            else if(e.deleted)
+            else if(e.deleted && e.id >= 0)
                 this.deletedKonvaImages.push(e);
             else if(e.edited && e.id >= 0)
                 this.editedKonvaImages.push(e);
