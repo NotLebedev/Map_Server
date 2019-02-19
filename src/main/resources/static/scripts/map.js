@@ -1,9 +1,9 @@
 import {loadElementsAsync} from "./loadController.js";
 import {ImageEntity, addEntity} from "./editor.js";
 
-const stage = new Konva.Stage({
+const stage = new Konva.Stage({ //Creating new stage
     container: 'container',
-    width: window.innerWidth,
+    width: window.innerWidth, //Stage should take up all the available space
     height: window.innerHeight,
     draggable: true
 });
@@ -11,7 +11,7 @@ const layer = new Konva.Layer();
 stage.add(layer);
 initLoad();
 
-function updateLoad() {
+function updateLoad() { //Update map with new entities from server
 
     const callback = function (entities) {
         for (let i = 0; i < entities.length; i++) {
@@ -53,18 +53,18 @@ function updateLoad() {
 
 }
 
-function initLoad() {
+function initLoad() { //Initial loading sequence (when page is just opened)
 
     updateLoad();
 
-    setTimeout(function () {
-        layer.batchDraw();
+    setTimeout(function () { //For some reason drawing after each image loaded does
+        layer.batchDraw();          //not work in this case
         stage.batchDraw();
     }, 100);
 
 }
 
-function rescale(scaleCenter, doZoomIn, scaleFactor) {
+function rescale(scaleCenter, doZoomIn, scaleFactor) { //Generic rescaling function
 
     const oldScale = stage.scaleX();
     let newScale =
@@ -72,10 +72,10 @@ function rescale(scaleCenter, doZoomIn, scaleFactor) {
 
     if(newScale > 5) {  //No zooming in more than five times
 
-        if(oldScale !== 5)
-            newScale = 5;
-        else
-            return;
+        if(oldScale !== 5) //If scale is MORE than five make it exactly five
+            newScale = 5;  //so no matter what combination of wheel and button zoom
+        else               //is used maximum zoom is same
+            return; //If exactly five times, than do nothing
 
     }
 
@@ -101,17 +101,18 @@ function rescale(scaleCenter, doZoomIn, scaleFactor) {
 
 }
 
-stage.on('wheel', e => {
+stage.on('wheel', e => { //Mousewheel scaling
 
     e.evt.preventDefault();
     rescale(stage.getPointerPosition(), e.evt.deltaY > 0, 1.05);
 
 });
 
+//Button scaling
 document.getElementById("zoomIn").addEventListener("click", function () {
 
     rescale({
-        x: stage.width() / 2,
+        x: stage.width() / 2, //Zoom to center of map
         y: stage.height() / 2
     }, true, 1.15);
 
@@ -130,17 +131,18 @@ let oldX = -stage.x();
 let oldY = -stage.y();
 stage.on("dragmove", function () {
 
+    //Stage should be updated once every 100 pixels moved to improve performance
     if(Math.abs((-stage.x() / stage.scaleX()) - oldX) > 100 || Math.abs((-stage.y() / stage.scaleY()) - oldY) > 100)
         updateLoad();
 
 });
 
-export function addNewImage(url, callback) {
+export function addNewImage(url, callback) { //Function for adding images in edit mode
 
     const imageObj = new Image();
     imageObj.onload = () => {
 
-        const img = new Konva.Image({
+        const img = new Konva.Image({ //New image is placed in center of screen
             x: (-stage.x() / stage.scaleX()) + (stage.width() / 2 / stage.scaleX()),
             y: (-stage.y() / stage.scaleY()) + (stage.height() / 2 / stage.scaleY()),
             image: imageObj,
@@ -153,8 +155,8 @@ export function addNewImage(url, callback) {
         layer.add(img);
 
         const ie = new ImageEntity(-1, img);
-        ie.enterEditMode();
-        ie.click();
+        ie.enterEditMode(); //Newly added image should be in edit mode as well to be editable
+        ie.click(); //And active, as it`s new
         addEntity(ie);
 
         layer.batchDraw();
