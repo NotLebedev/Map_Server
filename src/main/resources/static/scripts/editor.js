@@ -35,11 +35,26 @@ class EditorChanges { //Editor mode changelist
 
         entityStorage.forEach(e => e.deactivate()); //Deactivate all entities to save them
 
+        this.addedKonvaImages = [];
+        this.editedKonvaImages = [];
+        this.deletedKonvaImages = [];
+
+        entityStorage.forEach(e => {
+
+            if(e.id < 0 && !e.deleted)
+                this.addedKonvaImages.push(e);
+            else if(e.deleted)
+                this.deletedKonvaImages.push(e);
+            else if(e.edited)
+                this.editedKonvaImages.push(e);
+
+        });
+
         const added = [];
 
         for(let i = 0; i < this.addedKonvaImages.length; i++) {
 
-            const image = this.addedKonvaImages[i];
+            const image = this.addedKonvaImages[i].konvaImage;
 
             added.push({
                 "type": "image",
