@@ -7,20 +7,20 @@ let editorBar = document.getElementById("editBar");
 
 let editorChanges = null;
 editorButton.addEventListener("click", function () {
-    editorBar.style.display = editorBar.style.display === "none" ? "block" : "none";
+    editorBar.style.display = editorBar.style.display === "none" ? "block" : "none"; //Toggle edit bar
 
-    if(editorBar.style.display === "block") {
+    if(editorBar.style.display === "block") { //If bar is active enter edit mode for all entities
         entityStorage.forEach(e => {e.enterEditMode()});
     }else {
         entityStorage.forEach(e => {e.exitEditMode()});
     }
 
-    if(editorChanges == null)
+    if(editorChanges == null) //If no changelist is present create one
         editorChanges = new EditorChanges();
 
 });
 
-class EditorChanges {
+class EditorChanges { //Editor mode changelist
 
     constructor() {
         this.addedKonvaImages = [];
@@ -30,9 +30,9 @@ class EditorChanges {
         document.getElementById("addImage").addEventListener("click", this.newImage.bind(this));
     }
 
-    saveAll() {
+    saveAll() { //Build entities modify request and POST it to server
 
-        entityStorage.forEach(e => e.deactivate());
+        entityStorage.forEach(e => e.deactivate()); //Deactivate all entities to save them
 
         const added = [];
 
@@ -82,9 +82,9 @@ class EditorChanges {
 
     imageModified(image) {
 
+        //If image is not yet in changelist and is not newly added (newly added have id = -1)
         if(!(this.editedKonvaImages.some(e => e.id === image.id) || image.id === -1)) {
             this.editedKonvaImages.push(image);
-            console.log("new image modified");
         }
 
     }
@@ -94,7 +94,7 @@ class EditorChanges {
 export class ImageEntity {
 
     constructor(id, konvaImage) {
-        this.id = id;
+        this.id = id; //It is actually used, no idea why idea marks it as unused
         this.konvaImage = konvaImage;
         this.active = false;
         this.anchor = null;
@@ -102,7 +102,7 @@ export class ImageEntity {
     }
 
     enterEditMode() {
-        this.konvaImage.off("click");
+        this.konvaImage.off("click"); //Unbind previously assigned listener
         this.konvaImage.on("click", this.click.bind(this));
     }
 
@@ -120,7 +120,7 @@ export class ImageEntity {
 
         if(this.active) {
 
-            let anchor = new Konva.Circle({
+            let anchor = new Konva.Circle({ //Adding drag anchor
                 x: this.konvaImage.x(),
                 y: this.konvaImage.y(),
                 stroke: '#666',
@@ -131,13 +131,13 @@ export class ImageEntity {
                 dragOnTop: false
             });
             anchor.on('mouseover', function() {
-                var layer = this.getLayer();
+                let layer = this.getLayer();
                 document.body.style.cursor = 'pointer';
                 this.setStrokeWidth(4);
                 layer.draw();
             });
             anchor.on('mouseout', function() {
-                var layer = this.getLayer();
+                let layer = this.getLayer();
                 document.body.style.cursor = 'default';
                 this.setStrokeWidth(2);
                 layer.draw();
@@ -145,7 +145,7 @@ export class ImageEntity {
 
             const ctx = this;
             anchor.on("dragmove", function () {
-               ctx.update(this);
+               ctx.update(this); //update image in respect to this anchor
             });
 
             addToLayer(anchor);
@@ -172,7 +172,7 @@ export class ImageEntity {
             layer.batchDraw();
         }
 
-        if(this.active && this.edited)
+        if(this.active && this.edited) //If this image was active and edited upon deactivation add it to changelist
             editorChanges.imageModified(this);
 
         this.anchor = null;
@@ -187,7 +187,7 @@ export class ImageEntity {
 
 }
 
-let entityStorage = [];
+let entityStorage = []; //Storage of all entities present on map
 
 export function addEntity(entity) {
     entityStorage.push(entity);
