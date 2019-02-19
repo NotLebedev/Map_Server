@@ -97,7 +97,7 @@ export class ImageEntity {
         this.id = id; //It is actually used, no idea why idea marks it as unused
         this.konvaImage = konvaImage;
         this.active = false;
-        this.anchor = null;
+        this.dragAnchor = null;
         this.edited = false;
     }
 
@@ -145,37 +145,37 @@ export class ImageEntity {
 
             const ctx = this;
             anchor.on("dragmove", function () {
-               ctx.update(this); //update image in respect to this anchor
+               ctx.update(this); //update image in respect to this dragAnchor
             });
 
             addToLayer(anchor);
             anchor.getLayer().batchDraw();
-            this.anchor = anchor;
+            this.dragAnchor = anchor;
 
         }else {
-            if(this.anchor != null) {
-                const layer = this.anchor.getLayer();
-                this.anchor.destroy();
+            if(this.dragAnchor != null) {
+                const layer = this.dragAnchor.getLayer();
+                this.dragAnchor.destroy();
                 layer.batchDraw();
             }
 
-            this.anchor = null;
+            this.dragAnchor = null;
             layer.batchDraw();
         }
 
     }
 
     deactivate() {
-        if(this.anchor != null) {
-            const layer = this.anchor.getLayer();
-            this.anchor.destroy();
+        if(this.dragAnchor != null) {
+            const layer = this.dragAnchor.getLayer();
+            this.dragAnchor.destroy();
             layer.batchDraw();
         }
 
         if(this.active && this.edited) //If this image was active and edited upon deactivation add it to changelist
             editorChanges.imageModified(this);
 
-        this.anchor = null;
+        this.dragAnchor = null;
         this.active = false;
     }
 
