@@ -216,7 +216,6 @@ export class ImageEntity {
             }
 
             this.dragAnchor = null;
-            layer.batchDraw();
         }
 
     }
@@ -238,6 +237,9 @@ export class ImageEntity {
     update(anchor) {
         this.konvaImage.x(anchor.x());
         this.konvaImage.y(anchor.y());
+
+        this.deleteAnchor.x(this.konvaImage.x() + this.konvaImage.width());
+        this.deleteAnchor.y(this.konvaImage.y());
         this.edited = true;
     }
 
