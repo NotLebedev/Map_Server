@@ -14,6 +14,7 @@ public class ModifyJsonRequest {
 
     private EntityAdded[] added;
     private EntityEdited[] edited;
+    private EntityDeleted[] deleted;
 
     @JsonTypeInfo(
             use = JsonTypeInfo.Id.NAME,
@@ -57,6 +58,15 @@ public class ModifyJsonRequest {
         private Long height;
 
         private String url;
+
+    }
+
+    @Getter @Setter @ToString
+    public static class EntityDeleted {
+
+        private String type;
+
+        private Long id;
 
     }
 

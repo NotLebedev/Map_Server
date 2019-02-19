@@ -45,7 +45,7 @@ class EditorChanges { //Editor mode changelist
                 this.addedKonvaImages.push(e);
             else if(e.deleted)
                 this.deletedKonvaImages.push(e);
-            else if(e.edited)
+            else if(e.edited && e.id >= 0)
                 this.editedKonvaImages.push(e);
 
         });
@@ -84,7 +84,18 @@ class EditorChanges { //Editor mode changelist
 
         }
 
-        httpPostModifyAsync(added, edited);
+        const deleted = [];
+
+        for(let i = 0; i < this.deletedKonvaImages.length; i++) {
+
+            deleted.push({
+                "type": "image",
+                "id": this.deletedKonvaImages[i].id
+            })
+
+        }
+
+        httpPostModifyAsync(added, edited, deleted);
 
     }
 
