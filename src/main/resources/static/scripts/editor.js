@@ -23,10 +23,6 @@ editorButton.addEventListener("click", function () {
 class EditorChanges { //Editor mode changelist
 
     constructor() {
-        this.addedKonvaImages = [];
-        this.editedKonvaImages = [];
-        this.deletedKonvaImages = [];
-
         document.getElementById("save").addEventListener("click", this.saveAll.bind(this));
         document.getElementById("addImage").addEventListener("click", this.newImage.bind(this));
     }
@@ -91,42 +87,7 @@ class EditorChanges { //Editor mode changelist
     newImage() {
         const url = document.getElementById("newImageSrc").value.toString();
 
-        addNewImage(url, e => {
-            this.addedKonvaImages.push(e);
-        });
-    }
-
-    imageModified(image) {
-
-        //If image is not yet in changelist and is not newly added (newly added have id < 0)
-        if(!(this.editedKonvaImages.some(e => e.id === image.id) || image.id < 0 || image.deleted)) {
-            this.editedKonvaImages.push(image);
-        }
-
-    }
-
-    imageDeleted(image) {
-
-        if(image.id < 0) { //Remove newly added image from changelist
-
-            this.addedKonvaImages = this.addedKonvaImages.filter(function (value) {
-                return value.id !== image.id;
-            });
-
-            return;
-
-        }else if(this.editedKonvaImages.some(e => image.id === e.id)){ //If this image has been edited
-
-            //Remove from edited changelist
-            this.editedKonvaImages = this.editedKonvaImages.filter(function (value) {
-                return value.id !== image.id;
-            });
-
-        }
-
-        //If image is not in newly added it should be added to deleted changelist in any case
-        this.deletedKonvaImages.push(image);
-
+        addNewImage(url, e => {});
     }
 
 }
@@ -239,9 +200,6 @@ export class ImageEntity {
             layer.batchDraw();
         }
 
-        if(this.active && this.edited) //If this image was active and edited upon deactivation add it to changelist
-            editorChanges.imageModified(this);
-
         this.dragAnchor = null;
         this.deleteAnchor = null;
         this.active = false;
@@ -264,8 +222,6 @@ export class ImageEntity {
         this.konvaImage.getLayer().batchDraw();
 
         this.deleted = true;
-
-        editorChanges.imageDeleted(this);
 
     }
 
