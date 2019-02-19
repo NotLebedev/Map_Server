@@ -84,7 +84,7 @@ class EditorChanges { //Editor mode changelist
     imageModified(image) {
 
         //If image is not yet in changelist and is not newly added (newly added have id < 0)
-        if(!(this.editedKonvaImages.some(e => e.id === image.id) || image.id < 0)) {
+        if(!(this.editedKonvaImages.some(e => e.id === image.id) || image.id < 0 || image.deleted)) {
             this.editedKonvaImages.push(image);
         }
 
@@ -125,6 +125,7 @@ export class ImageEntity {
         this.dragAnchor = null;
         this.deleteAnchor = null;
         this.edited = false;
+        this.deleted = false;
     }
 
     enterEditMode() {
@@ -202,6 +203,7 @@ export class ImageEntity {
 
             deleteAnchor.on("click", function() {
                 console.log("Deleting image");
+                ctx.delete();
             });
 
             addToLayer(deleteAnchor);
@@ -237,6 +239,19 @@ export class ImageEntity {
         this.deleteAnchor.x(this.konvaImage.x() + this.konvaImage.width());
         this.deleteAnchor.y(this.konvaImage.y());
         this.edited = true;
+    }
+
+    delete() {
+
+        this.konvaImage.stroke("red");
+        this.konvaImage.strokeWidth(4);
+        this.konvaImage.strokeEnabled(true);
+        this.konvaImage.getLayer().batchDraw();
+
+        this.deleted = true;
+
+        editorChanges.imageDeleted(this);
+
     }
 
 }
