@@ -25,6 +25,7 @@ class EditorChanges { //Editor mode changelist
     constructor() {
         this.addedKonvaImages = [];
         this.editedKonvaImages = [];
+        this.deletedKonvaImages = [];
 
         document.getElementById("save").addEventListener("click", this.saveAll.bind(this));
         document.getElementById("addImage").addEventListener("click", this.newImage.bind(this));
@@ -82,10 +83,34 @@ class EditorChanges { //Editor mode changelist
 
     imageModified(image) {
 
-        //If image is not yet in changelist and is not newly added (newly added have id = -1)
-        if(!(this.editedKonvaImages.some(e => e.id === image.id) || image.id === -1)) {
+        //If image is not yet in changelist and is not newly added (newly added have id < 0)
+        if(!(this.editedKonvaImages.some(e => e.id === image.id) || image.id < 0)) {
             this.editedKonvaImages.push(image);
         }
+
+    }
+
+    imageDeleted(image) {
+
+        if(image.id < 0) { //Remove newly added image from changelist
+
+            this.addedKonvaImages = this.addedKonvaImages.filter(function (value) {
+                return value.id !== image.id;
+            });
+
+            return;
+
+        }else if(this.editedKonvaImages.some(e => image.id === e.id)){ //If this image has been edited
+
+            //Remove from edited changelist
+            this.editedKonvaImages = this.editedKonvaImages.filter(function (value) {
+                return value.id !== image.id;
+            });
+
+        }
+
+        //If image is not in newly added it should be added to deleted changelist in any case
+        this.deletedKonvaImages.push(image);
 
     }
 

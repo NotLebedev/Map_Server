@@ -137,6 +137,7 @@ stage.on("dragmove", function () {
 
 });
 
+let newAddedCounter = 1;
 export function addNewImage(url, callback) { //Function for adding images in edit mode
 
     const imageObj = new Image();
@@ -154,10 +155,12 @@ export function addNewImage(url, callback) { //Function for adding images in edi
 
         layer.add(img);
 
-        const ie = new ImageEntity(-1, img);
+        const ie = new ImageEntity(-newAddedCounter, img); //Newly added images have negative ids
         ie.enterEditMode(); //Newly added image should be in edit mode as well to be editable
         ie.click(); //And active, as it`s new
         addEntity(ie);
+
+        newAddedCounter ++;
 
         layer.batchDraw();
         stage.batchDraw();
