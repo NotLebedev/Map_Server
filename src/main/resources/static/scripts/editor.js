@@ -209,13 +209,7 @@ export class ImageEntity {
             anchor.getLayer().batchDraw();
 
         }else {
-            if(this.dragAnchor != null) {
-                const layer = this.dragAnchor.getLayer();
-                this.dragAnchor.destroy();
-                layer.batchDraw();
-            }
-
-            this.dragAnchor = null;
+            this.deactivate();
         }
 
     }
@@ -224,6 +218,7 @@ export class ImageEntity {
         if(this.dragAnchor != null) {
             const layer = this.dragAnchor.getLayer();
             this.dragAnchor.destroy();
+            this.deleteAnchor.destroy();
             layer.batchDraw();
         }
 
@@ -231,6 +226,7 @@ export class ImageEntity {
             editorChanges.imageModified(this);
 
         this.dragAnchor = null;
+        this.deleteAnchor = null;
         this.active = false;
     }
 
