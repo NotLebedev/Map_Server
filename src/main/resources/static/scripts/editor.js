@@ -95,7 +95,10 @@ class EditorChanges { //Editor mode changelist
 
         }
 
-        httpPostModifyAsync(added, edited, deleted, () => window.location.reload(true));
+        const login = window.prompt("Login", "");
+        const password = window.prompt("Password", "");
+
+        httpPostModifyAsync(login, password, added, edited, deleted, () => window.location.reload(true));
 
     }
 
