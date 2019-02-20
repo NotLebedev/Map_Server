@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("LoginRepository")
 public interface LoginRepository extends CrudRepository<LoginEntity, Long> {
+
+    LoginEntity findByUsername(final String username);
+
 }
