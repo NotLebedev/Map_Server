@@ -16,6 +16,9 @@ public class ModifyJsonRequest {
     private EntityEdited[] edited;
     private EntityDeleted[] deleted;
 
+    private String login;
+    private String password;
+
     @JsonTypeInfo(
             use = JsonTypeInfo.Id.NAME,
             property = "type"
