@@ -3,8 +3,8 @@ package ilich.ml.mapserver.auth;
 import ilich.ml.mapserver.auth.model.LoginEntity;
 import ilich.ml.mapserver.auth.model.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -13,14 +13,17 @@ import java.security.NoSuchAlgorithmException;
 /**
  * @author NotLebedev
  */
-@Service
+@Component
 public class Authenticator {
 
-    @Qualifier("LoginRepository")
-    @Autowired
-    private LoginRepository repository;
+    private static LoginRepository repository;
 
     private Authenticator() {
+    }
+
+    @Autowired
+    public void context(ApplicationContext applicationContext) {
+        repository = applicationContext.getBean(LoginRepository.class);
     }
 
     private static class AuthenticatorLazyHolder {
@@ -47,7 +50,7 @@ public class Authenticator {
         }
 
         String hash = new String(digest.digest(
-                (password + loginEntity.getSalt()).getBytes(StandardCharsets.UTF_8)));
+                (password + loginEntity.getSalt()).getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
 
         return loginEntity.getPasswordHash().equals(hash);
 
