@@ -5,7 +5,6 @@ import ilich.ml.mapserver.model.entities.OnMapImageEntity;
 import ilich.ml.mapserver.model.repositories.OnMapImageRepository;
 import ilich.ml.mapserver.model.repositories.RepositoryManagerBean;
 import ilich.ml.mapserver.web.requests.ModifyJsonRequest;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
