@@ -124,7 +124,7 @@ export class ImageEntity {
     exitEditMode() {
         this.deactivate();
         this.konvaImage.off("click");
-        this.konvaImage.on("click", e => {});
+        this.konvaImage.on("click", () => {});
     }
 
     click() {
